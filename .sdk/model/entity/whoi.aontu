@@ -1,0 +1,49 @@
+# Entity: whoi
+
+main: kit: entity: whoi: {
+
+  alias: field: {}
+
+  name: "whoi"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "apple.com"
+                kind: "query"
+                name: "domain"
+                orig: "domain"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/whois/lookup"
+          parts: [
+            "v1"
+            "whois"
+            "lookup"
+          ]
+          select: {
+            "$action": "lookup"
+            exist: [
+              "domain"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

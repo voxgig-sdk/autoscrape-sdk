@@ -1,0 +1,67 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 7
+  metrics: count: path: 11
+  metrics: count: method: 11
+
+  entity: building_permit: {
+    path: "/v1/building-permits/search": {
+      action: "search": {}
+      op: load: method: *GET
+    }
+  }
+
+  entity: business_entity: {
+    path: "/v1/business-entity/search": {
+      action: "search": {}
+      op: load: method: *GET
+    }
+  }
+
+  entity: irs_990: {
+    path: "/v1/irs-990/search": {
+      action: "search": {}
+      op: load: method: *GET
+    }
+  }
+
+  entity: sec_edgar: {
+    path: "/v1/sec-edgar/filings": {
+      action: "filing": {}
+      op: load: method: *GET
+    }
+  }
+
+  entity: stock_data: {
+    path: "/v1/stock/chart": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: whoi: {
+    path: "/v1/whois/lookup": {
+      action: "lookup": {}
+      op: load: method: *GET
+    }
+  }
+
+  entity: x402_paid: {
+    path: "/x402/v1/building-permits/search": {
+      op: load: method: *GET
+    }
+    path: "/x402/v1/business-entity/search": {
+      op: load: method: *GET
+    }
+    path: "/x402/v1/irs-990/search": {
+      op: load: method: *GET
+    }
+    path: "/x402/v1/sec-edgar/filings": {
+      op: load: method: *GET
+    }
+    path: "/x402/v1/whois/lookup": {
+      op: load: method: *GET
+    }
+  }
+
+}

@@ -1,0 +1,26 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      auth: false
+      contact: {
+        email: "avatorresdev@gmail.com"
+        name: "Ava Torres"
+        url: "https://www.payapi.market/provider/ava-torres"
+      }
+      description: "No-key evaluation REST API plus paid x402 mirrors for US public-data evidence: business filings across 16 no-key states, building permits, SEC EDGAR, IRS 990 nonprofits, WHOIS domain lookup, and stock price data. Paid x402 routes are listed first for agent/payment crawlers and settle through PayAPI-compatible x402 facilitators (CDP + Dexter) at $0.0100/request. CA business filings require a keyed source and are not enabled on the open pilot. SC currently requires browser CAPTCHA verification and is not enabled for authoritative no-key automated search."
+      servers: [
+        {
+          url: "https://autoscrape-api-seven.vercel.app"
+        }
+      ]
+      summary: "No-key evaluation REST API plus paid x402 mirrors for US public-data evidence: business filings across 16 no-key states, building permits, SEC EDGAR, IRS 990 nonprofits, WHOIS domain lookup, and stock price data."
+      title: "AutoScrape Data API"
+      version: "1.0.0"
+      website: "https://autoscrape-api-seven.vercel.app"
+    }
+  }
+}
+

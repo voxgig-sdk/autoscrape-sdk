@@ -1,0 +1,327 @@
+# Entity: x402_paid
+
+main: kit: entity: x402_paid: {
+
+  alias: field: {}
+
+  name: "x402_paid"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "cik"
+                orig: "cik"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date_from"
+                orig: "date_from"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date_to"
+                orig: "date_to"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "form_type"
+                orig: "form_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 100
+                kind: "query"
+                name: "max_filing"
+                orig: "max_filing"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "ticker"
+                orig: "ticker"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/x402/v1/sec-edgar/filings"
+          parts: [
+            "x402"
+            "v1"
+            "sec-edgar"
+            "filings"
+          ]
+          select: {
+            exist: [
+              "cik"
+              "date_from"
+              "date_to"
+              "form_type"
+              "max_filing"
+              "query"
+              "ticker"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "austin"
+                kind: "query"
+                name: "city"
+                orig: "city"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date_from"
+                orig: "date_from"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date_to"
+                orig: "date_to"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "keyword"
+                orig: "keyword"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 25
+                kind: "query"
+                name: "max_result"
+                orig: "max_result"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "permit_type"
+                orig: "permit_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/x402/v1/building-permits/search"
+          parts: [
+            "x402"
+            "v1"
+            "building-permits"
+            "search"
+          ]
+          select: {
+            exist: [
+              "city"
+              "date_from"
+              "date_to"
+              "keyword"
+              "max_result"
+              "permit_type"
+              "query"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "ein"
+                orig: "ein"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "fetch_detail"
+                orig: "fetch_detail"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: 25
+                kind: "query"
+                name: "max_result"
+                orig: "max_result"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "state"
+                orig: "state"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/x402/v1/irs-990/search"
+          parts: [
+            "x402"
+            "v1"
+            "irs-990"
+            "search"
+          ]
+          select: {
+            exist: [
+              "ein"
+              "fetch_detail"
+              "max_result"
+              "query"
+              "state"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "fetch_detail"
+                orig: "fetch_detail"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: 25
+                kind: "query"
+                name: "max_result"
+                orig: "max_result"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "Apple Inc"
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "state"
+                orig: "state"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/x402/v1/business-entity/search"
+          parts: [
+            "x402"
+            "v1"
+            "business-entity"
+            "search"
+          ]
+          select: {
+            exist: [
+              "fetch_detail"
+              "max_result"
+              "query"
+              "state"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "apple.com"
+                kind: "query"
+                name: "domain"
+                orig: "domain"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/x402/v1/whois/lookup"
+          parts: [
+            "x402"
+            "v1"
+            "whois"
+            "lookup"
+          ]
+          select: {
+            exist: [
+              "domain"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

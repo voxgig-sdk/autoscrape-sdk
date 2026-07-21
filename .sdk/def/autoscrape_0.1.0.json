@@ -1,0 +1,907 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "AutoScrape Data API",
+    "description": "No-key evaluation REST API plus paid x402 mirrors for US public-data evidence: business filings across 16 no-key states, building permits, SEC EDGAR, IRS 990 nonprofits, WHOIS domain lookup, and stock price data. Paid x402 routes are listed first for agent/payment crawlers and settle through PayAPI-compatible x402 facilitators (CDP + Dexter) at $0.0100/request. CA business filings require a keyed source and are not enabled on the open pilot. SC currently requires browser CAPTCHA verification and is not enabled for authoritative no-key automated search.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Ava Torres",
+      "email": "avatorresdev@gmail.com",
+      "url": "https://www.payapi.market/provider/ava-torres"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://autoscrape-api-seven.vercel.app"
+    }
+  ],
+  "paths": {
+    "/x402/v1/business-entity/search": {
+      "get": {
+        "operationId": "paidX402SearchBusinessEntities",
+        "summary": "KYB merchant underwriting business entity registry evidence",
+        "tags": [
+          "x402 paid",
+          "Business Entity"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "Apple Inc"
+            },
+            "description": "Business name to search. Defaults to Apple Inc with a warning when omitted for marketplace/agent discovery."
+          },
+          {
+            "name": "states",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated state codes (default: NY with warning). Also accepts 'state' param."
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 25
+            },
+            "description": "Maximum records to return across the response"
+          },
+          {
+            "name": "fetchDetails",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Include full entity details"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment required. Response includes PAYMENT-REQUIRED header with x402 challenge and Bazaar discovery metadata.",
+            "headers": {
+              "PAYMENT-REQUIRED": {
+                "description": "Base64-encoded x402 payment challenge",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "PAYMENT-RESPONSE": {
+                "description": "x402 settlement response when payment succeeds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "description": "Paid x402 API for KYB merchant underwriting, business verification, legal entity verification, vendor due diligence, and official-source company registry evidence. Returns HTTP 402 Payment Required until a valid x402 payment is supplied. Price: $0.0100/request on Base USDC via CDP/Dexter x402 facilitators; public no-key demo remains available at /v1/business-entity/search.",
+        "x-payment-info": {
+          "x402Version": "2",
+          "scheme": "exact",
+          "network": "eip155:8453",
+          "asset": "USDC",
+          "price": "$0.0100",
+          "payTo": "0xb50bcA6e8ec9D0cA76C77965A0E1AA15a68fDAc2",
+          "facilitator": "https://api.cdp.coinbase.com/platform/v2/x402",
+          "facilitators": [
+            "https://api.cdp.coinbase.com/platform/v2/x402",
+            "https://x402.dexter.cash"
+          ],
+          "resource": "https://autoscrape-api-seven.vercel.app/x402/v1/business-entity/search",
+          "discovery": "https://autoscrape-api-seven.vercel.app/.well-known/x402.json",
+          "example": "https://autoscrape-api-seven.vercel.app/x402/v1/business-entity/search?query=Apple%20Inc&states=NY,TX&maxResults=3&fetchDetails=true"
+        }
+      }
+    },
+    "/x402/v1/building-permits/search": {
+      "get": {
+        "operationId": "paidX402SearchBuildingPermits",
+        "summary": "Building permit evidence for roof-age, solar AHJ, property insurance, and contractor workflows",
+        "tags": [
+          "x402 paid",
+          "Building Permits"
+        ],
+        "parameters": [
+          {
+            "name": "city",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "austin"
+            },
+            "description": "City key such as austin, chicago, la, sf, seattle, denver, boston, portland, dallas, houston, or phoenix. Defaults to austin when omitted for agent discovery."
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Full-text search across public permit fields; query is accepted as an alias"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Alias for keyword for agents that send a generic query parameter"
+          },
+          {
+            "name": "permitType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Permit type filter"
+          },
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "Issue/application date lower bound YYYY-MM-DD"
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "Issue/application date upper bound YYYY-MM-DD"
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 25,
+              "maximum": 100
+            },
+            "description": "Max results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permit lead records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment required. Response includes PAYMENT-REQUIRED header with x402 challenge and Bazaar discovery metadata.",
+            "headers": {
+              "PAYMENT-REQUIRED": {
+                "description": "Base64-encoded x402 payment challenge",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "PAYMENT-RESPONSE": {
+                "description": "x402 settlement response when payment succeeds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "description": "Paid x402 API for building permits, roof-age and property-insurance permit history, solar/AHJ evidence, P&C underwriting and COPE checks, contractor leads, source-drift QA, home-services prospecting, and project records. Returns HTTP 402 Payment Required until a valid x402 payment is supplied. Price: $0.0100/request on Base USDC via CDP/Dexter x402 facilitators; public no-key demo remains available at /v1/building-permits/search.",
+        "x-payment-info": {
+          "x402Version": "2",
+          "scheme": "exact",
+          "network": "eip155:8453",
+          "asset": "USDC",
+          "price": "$0.0100",
+          "payTo": "0xb50bcA6e8ec9D0cA76C77965A0E1AA15a68fDAc2",
+          "facilitator": "https://api.cdp.coinbase.com/platform/v2/x402",
+          "facilitators": [
+            "https://api.cdp.coinbase.com/platform/v2/x402",
+            "https://x402.dexter.cash"
+          ],
+          "resource": "https://autoscrape-api-seven.vercel.app/x402/v1/building-permits/search",
+          "discovery": "https://autoscrape-api-seven.vercel.app/.well-known/x402.json",
+          "example": "https://autoscrape-api-seven.vercel.app/x402/v1/building-permits/search?city=austin&query=roof&maxResults=3"
+        }
+      }
+    },
+    "/x402/v1/sec-edgar/filings": {
+      "get": {
+        "operationId": "paidX402SearchSECEdgarFilings",
+        "summary": "SEC EDGAR filings for investor and financial due diligence",
+        "tags": [
+          "x402 paid",
+          "SEC EDGAR"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Company name search"
+          },
+          {
+            "name": "tickers",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated stock tickers"
+          },
+          {
+            "name": "ciks",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated CIK numbers"
+          },
+          {
+            "name": "formTypes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by form type (e.g. 10-K,10-Q)"
+          },
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "Start date YYYY-MM-DD"
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "End date YYYY-MM-DD"
+          },
+          {
+            "name": "maxFilings",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Max results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Filing results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment required. Response includes PAYMENT-REQUIRED header with x402 challenge and Bazaar discovery metadata.",
+            "headers": {
+              "PAYMENT-REQUIRED": {
+                "description": "Base64-encoded x402 payment challenge",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "PAYMENT-RESPONSE": {
+                "description": "x402 settlement response when payment succeeds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "description": "Paid x402 API for SEC EDGAR filings, 10-K and 10-Q reports, public-company research, investor due diligence, and financial due diligence evidence. Returns HTTP 402 Payment Required until a valid x402 payment is supplied. Price: $0.0100/request on Base USDC via CDP/Dexter x402 facilitators; public no-key demo remains available at /v1/sec-edgar/filings.",
+        "x-payment-info": {
+          "x402Version": "2",
+          "scheme": "exact",
+          "network": "eip155:8453",
+          "asset": "USDC",
+          "price": "$0.0100",
+          "payTo": "0xb50bcA6e8ec9D0cA76C77965A0E1AA15a68fDAc2",
+          "facilitator": "https://api.cdp.coinbase.com/platform/v2/x402",
+          "facilitators": [
+            "https://api.cdp.coinbase.com/platform/v2/x402",
+            "https://x402.dexter.cash"
+          ],
+          "resource": "https://autoscrape-api-seven.vercel.app/x402/v1/sec-edgar/filings",
+          "discovery": "https://autoscrape-api-seven.vercel.app/.well-known/x402.json",
+          "example": "https://autoscrape-api-seven.vercel.app/x402/v1/sec-edgar/filings?tickers=AAPL&formTypes=10-K&maxFilings=2"
+        }
+      }
+    },
+    "/x402/v1/irs-990/search": {
+      "get": {
+        "operationId": "paidX402SearchIRS990",
+        "summary": "IRS 990 nonprofit charity verification and grant prospecting",
+        "tags": [
+          "x402 paid",
+          "IRS 990"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Organization name"
+          },
+          {
+            "name": "ein",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "EIN number lookup"
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Two-letter state code"
+          },
+          {
+            "name": "fetchDetails",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Include full filing details"
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 25
+            },
+            "description": "Max results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Nonprofit results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment required. Response includes PAYMENT-REQUIRED header with x402 challenge and Bazaar discovery metadata.",
+            "headers": {
+              "PAYMENT-REQUIRED": {
+                "description": "Base64-encoded x402 payment challenge",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "PAYMENT-RESPONSE": {
+                "description": "x402 settlement response when payment succeeds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "description": "Paid x402 API for IRS 990 nonprofit search, charity verification, tax-exempt organization checks, grant prospecting, donor research, and foundation research. Returns HTTP 402 Payment Required until a valid x402 payment is supplied. Price: $0.0100/request on Base USDC via CDP/Dexter x402 facilitators; public no-key demo remains available at /v1/irs-990/search.",
+        "x-payment-info": {
+          "x402Version": "2",
+          "scheme": "exact",
+          "network": "eip155:8453",
+          "asset": "USDC",
+          "price": "$0.0100",
+          "payTo": "0xb50bcA6e8ec9D0cA76C77965A0E1AA15a68fDAc2",
+          "facilitator": "https://api.cdp.coinbase.com/platform/v2/x402",
+          "facilitators": [
+            "https://api.cdp.coinbase.com/platform/v2/x402",
+            "https://x402.dexter.cash"
+          ],
+          "resource": "https://autoscrape-api-seven.vercel.app/x402/v1/irs-990/search",
+          "discovery": "https://autoscrape-api-seven.vercel.app/.well-known/x402.json",
+          "example": "https://autoscrape-api-seven.vercel.app/x402/v1/irs-990/search?query=American%20Red%20Cross&state=NY&maxResults=3"
+        }
+      }
+    },
+    "/x402/v1/whois/lookup": {
+      "get": {
+        "operationId": "paidX402WhoisLookup",
+        "summary": "Merchant risk domain age and website legitimacy WHOIS evidence",
+        "tags": [
+          "x402 paid",
+          "WHOIS"
+        ],
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "apple.com"
+            },
+            "description": "Domain name to look up. Defaults to apple.com when omitted for agent discovery."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "WHOIS data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment required. Response includes PAYMENT-REQUIRED header with x402 challenge and Bazaar discovery metadata.",
+            "headers": {
+              "PAYMENT-REQUIRED": {
+                "description": "Base64-encoded x402 payment challenge",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "PAYMENT-RESPONSE": {
+                "description": "x402 settlement response when payment succeeds",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "description": "Paid x402 API for WHOIS domain reputation evidence, merchant risk, website legitimacy, domain age, vendor due diligence, third-party risk, and fraud checks. Returns HTTP 402 Payment Required until a valid x402 payment is supplied. Price: $0.0100/request on Base USDC via CDP/Dexter x402 facilitators; public no-key demo remains available at /v1/whois/lookup.",
+        "x-payment-info": {
+          "x402Version": "2",
+          "scheme": "exact",
+          "network": "eip155:8453",
+          "asset": "USDC",
+          "price": "$0.0100",
+          "payTo": "0xb50bcA6e8ec9D0cA76C77965A0E1AA15a68fDAc2",
+          "facilitator": "https://api.cdp.coinbase.com/platform/v2/x402",
+          "facilitators": [
+            "https://api.cdp.coinbase.com/platform/v2/x402",
+            "https://x402.dexter.cash"
+          ],
+          "resource": "https://autoscrape-api-seven.vercel.app/x402/v1/whois/lookup",
+          "discovery": "https://autoscrape-api-seven.vercel.app/.well-known/x402.json",
+          "example": "https://autoscrape-api-seven.vercel.app/x402/v1/whois/lookup?domain=apple.com"
+        }
+      }
+    },
+    "/v1/business-entity/search": {
+      "get": {
+        "operationId": "searchBusinessEntities",
+        "summary": "Search business entity registrations across 16 no-key states plus optional keyed CA",
+        "tags": [
+          "Business Entity"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "Apple Inc"
+            },
+            "description": "Business name to search. Defaults to Apple Inc with a warning when omitted for marketplace/agent discovery."
+          },
+          {
+            "name": "states",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated state codes (default: NY with warning). Also accepts 'state' param."
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 25
+            },
+            "description": "Maximum records to return across the response"
+          },
+          {
+            "name": "fetchDetails",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Include full entity details"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "x-paid-mirror": "https://autoscrape-api-seven.vercel.app/x402/v1/business-entity/search"
+      }
+    },
+    "/v1/building-permits/search": {
+      "get": {
+        "operationId": "searchBuildingPermits",
+        "summary": "Search municipal building permit evidence for construction leads, solar AHJ QA, and property workflows",
+        "tags": [
+          "Building Permits"
+        ],
+        "parameters": [
+          {
+            "name": "city",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "austin"
+            },
+            "description": "City key such as austin, chicago, la, sf, seattle, denver, boston, portland, dallas, houston, or phoenix. Defaults to austin when omitted for agent discovery."
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Full-text search across public permit fields; query is accepted as an alias"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Alias for keyword for agents that send a generic query parameter"
+          },
+          {
+            "name": "permitType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Permit type filter"
+          },
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "Issue/application date lower bound YYYY-MM-DD"
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "Issue/application date upper bound YYYY-MM-DD"
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 25,
+              "maximum": 100
+            },
+            "description": "Max results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permit lead records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "x-paid-mirror": "https://autoscrape-api-seven.vercel.app/x402/v1/building-permits/search"
+      }
+    },
+    "/v1/sec-edgar/filings": {
+      "get": {
+        "operationId": "searchSECEdgarFilings",
+        "summary": "Search SEC EDGAR company filings (10-K, 10-Q, 8-K, etc.)",
+        "tags": [
+          "SEC EDGAR"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Company name search"
+          },
+          {
+            "name": "tickers",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated stock tickers"
+          },
+          {
+            "name": "ciks",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated CIK numbers"
+          },
+          {
+            "name": "formTypes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by form type (e.g. 10-K,10-Q)"
+          },
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "Start date YYYY-MM-DD"
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "End date YYYY-MM-DD"
+          },
+          {
+            "name": "maxFilings",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Max results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Filing results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "x-paid-mirror": "https://autoscrape-api-seven.vercel.app/x402/v1/sec-edgar/filings"
+      }
+    },
+    "/v1/irs-990/search": {
+      "get": {
+        "operationId": "searchIRS990",
+        "summary": "Search IRS 990 nonprofit tax filings",
+        "tags": [
+          "IRS 990"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Organization name"
+          },
+          {
+            "name": "ein",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "EIN number lookup"
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Two-letter state code"
+          },
+          {
+            "name": "fetchDetails",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Include full filing details"
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 25
+            },
+            "description": "Max results"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Nonprofit results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "x-paid-mirror": "https://autoscrape-api-seven.vercel.app/x402/v1/irs-990/search"
+      }
+    },
+    "/v1/whois/lookup": {
+      "get": {
+        "operationId": "whoisLookup",
+        "summary": "WHOIS domain registration lookup",
+        "tags": [
+          "WHOIS"
+        ],
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "apple.com"
+            },
+            "description": "Domain name to look up. Defaults to apple.com when omitted for agent discovery."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "WHOIS data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "x-paid-mirror": "https://autoscrape-api-seven.vercel.app/x402/v1/whois/lookup"
+      }
+    },
+    "/v1/stock/chart": {
+      "get": {
+        "operationId": "getStockChart",
+        "summary": "Stock price history from Yahoo Finance",
+        "tags": [
+          "Stock Data"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Stock ticker symbol"
+          },
+          {
+            "name": "range",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "1d",
+                "5d",
+                "1mo",
+                "3mo",
+                "6mo",
+                "1y",
+                "5y",
+                "max"
+              ],
+              "default": "1mo"
+            },
+            "description": "Time range"
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "1m",
+                "5m",
+                "15m",
+                "1h",
+                "1d",
+                "1wk",
+                "1mo"
+              ],
+              "default": "1d"
+            },
+            "description": "Data interval"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OHLCV price data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

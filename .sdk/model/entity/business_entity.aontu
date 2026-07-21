@@ -1,0 +1,74 @@
+# Entity: business_entity
+
+main: kit: entity: business_entity: {
+
+  alias: field: {}
+
+  name: "business_entity"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "fetch_detail"
+                orig: "fetch_detail"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: 25
+                kind: "query"
+                name: "max_result"
+                orig: "max_result"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "Apple Inc"
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "state"
+                orig: "state"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/business-entity/search"
+          parts: [
+            "v1"
+            "business-entity"
+            "search"
+          ]
+          select: {
+            "$action": "search"
+            exist: [
+              "fetch_detail"
+              "max_result"
+              "query"
+              "state"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

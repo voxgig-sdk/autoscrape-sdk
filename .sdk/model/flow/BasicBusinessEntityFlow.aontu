@@ -1,0 +1,28 @@
+# BasicBusinessEntityFlow
+
+main: kit: flow: BasicBusinessEntityFlow:
+{
+  entity: "business_entity",
+  kind: "basic",
+  name: "BasicBusinessEntityFlow",
+  step: [
+    {
+      input: {
+        ref: "business_entity_ref01",
+        srcdatavar: "business_entity_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-business_entity_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBusinessEntityFlow"
+}

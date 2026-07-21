@@ -1,0 +1,28 @@
+# BasicWhoiFlow
+
+main: kit: flow: BasicWhoiFlow:
+{
+  entity: "whoi",
+  kind: "basic",
+  name: "BasicWhoiFlow",
+  step: [
+    {
+      input: {
+        ref: "whoi_ref01",
+        srcdatavar: "whoi_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-whoi_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWhoiFlow"
+}

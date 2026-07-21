@@ -1,0 +1,20 @@
+{
+  "existing": {
+    "sec_edgar": {
+      "SEC_EDGAR00": {
+        "id": "SEC_EDGAR00"
+      },
+      "SEC_EDGAR01": {
+        "id": "SEC_EDGAR01"
+      },
+      "SEC_EDGAR02": {
+        "id": "SEC_EDGAR02"
+      }
+    }
+  },
+  "new": {
+    "sec_edgar": {
+      "sec_edgar_ref01": {}
+    }
+  }
+}

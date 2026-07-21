@@ -1,0 +1,65 @@
+# Entity: stock_data
+
+main: kit: entity: stock_data: {
+
+  alias: field: {}
+
+  name: "stock_data"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "1d"
+                kind: "query"
+                name: "interval"
+                orig: "interval"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "1mo"
+                kind: "query"
+                name: "range"
+                orig: "range"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "symbol"
+                orig: "symbol"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/stock/chart"
+          parts: [
+            "v1"
+            "stock"
+            "chart"
+          ]
+          select: {
+            exist: [
+              "interval"
+              "range"
+              "symbol"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,20 @@
+{
+  "existing": {
+    "x402_paid": {
+      "X402_PAID00": {
+        "id": "X402_PAID00"
+      },
+      "X402_PAID01": {
+        "id": "X402_PAID01"
+      },
+      "X402_PAID02": {
+        "id": "X402_PAID02"
+      }
+    }
+  },
+  "new": {
+    "x402_paid": {
+      "x402_paid_ref01": {}
+    }
+  }
+}

@@ -1,0 +1,81 @@
+# Entity: irs_990
+
+main: kit: entity: irs_990: {
+
+  alias: field: {}
+
+  name: "irs_990"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "ein"
+                orig: "ein"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "fetch_detail"
+                orig: "fetch_detail"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: 25
+                kind: "query"
+                name: "max_result"
+                orig: "max_result"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "state"
+                orig: "state"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/irs-990/search"
+          parts: [
+            "v1"
+            "irs-990"
+            "search"
+          ]
+          select: {
+            "$action": "search"
+            exist: [
+              "ein"
+              "fetch_detail"
+              "max_result"
+              "query"
+              "state"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

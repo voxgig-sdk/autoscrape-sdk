@@ -1,0 +1,28 @@
+# BasicIrs990Flow
+
+main: kit: flow: BasicIrs990Flow:
+{
+  entity: "irs_990",
+  kind: "basic",
+  name: "BasicIrs990Flow",
+  step: [
+    {
+      input: {
+        ref: "irs_990_ref01",
+        srcdatavar: "irs_990_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-irs_990_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicIrs990Flow"
+}

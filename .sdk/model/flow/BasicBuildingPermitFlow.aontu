@@ -1,0 +1,28 @@
+# BasicBuildingPermitFlow
+
+main: kit: flow: BasicBuildingPermitFlow:
+{
+  entity: "building_permit",
+  kind: "basic",
+  name: "BasicBuildingPermitFlow",
+  step: [
+    {
+      input: {
+        ref: "building_permit_ref01",
+        srcdatavar: "building_permit_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-building_permit_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBuildingPermitFlow"
+}

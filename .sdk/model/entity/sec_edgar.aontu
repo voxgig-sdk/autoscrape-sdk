@@ -1,0 +1,97 @@
+# Entity: sec_edgar
+
+main: kit: entity: sec_edgar: {
+
+  alias: field: {}
+
+  name: "sec_edgar"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "cik"
+                orig: "cik"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date_from"
+                orig: "date_from"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date_to"
+                orig: "date_to"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "form_type"
+                orig: "form_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 100
+                kind: "query"
+                name: "max_filing"
+                orig: "max_filing"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "ticker"
+                orig: "ticker"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/sec-edgar/filings"
+          parts: [
+            "v1"
+            "sec-edgar"
+            "filings"
+          ]
+          select: {
+            "$action": "filing"
+            exist: [
+              "cik"
+              "date_from"
+              "date_to"
+              "form_type"
+              "max_filing"
+              "query"
+              "ticker"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

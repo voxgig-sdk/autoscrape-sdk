@@ -1,0 +1,20 @@
+{
+  "existing": {
+    "whoi": {
+      "WHOI00": {
+        "id": "WHOI00"
+      },
+      "WHOI01": {
+        "id": "WHOI01"
+      },
+      "WHOI02": {
+        "id": "WHOI02"
+      }
+    }
+  },
+  "new": {
+    "whoi": {
+      "whoi_ref01": {}
+    }
+  }
+}

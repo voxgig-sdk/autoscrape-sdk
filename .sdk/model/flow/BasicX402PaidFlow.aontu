@@ -1,0 +1,28 @@
+# BasicX402PaidFlow
+
+main: kit: flow: BasicX402PaidFlow:
+{
+  entity: "x402_paid",
+  kind: "basic",
+  name: "BasicX402PaidFlow",
+  step: [
+    {
+      input: {
+        ref: "x402_paid_ref01",
+        srcdatavar: "x402_paid_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-x402_paid_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicX402PaidFlow"
+}

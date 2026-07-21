@@ -1,0 +1,20 @@
+{
+  "existing": {
+    "business_entity": {
+      "BUSINESS_ENTITY00": {
+        "id": "BUSINESS_ENTITY00"
+      },
+      "BUSINESS_ENTITY01": {
+        "id": "BUSINESS_ENTITY01"
+      },
+      "BUSINESS_ENTITY02": {
+        "id": "BUSINESS_ENTITY02"
+      }
+    }
+  },
+  "new": {
+    "business_entity": {
+      "business_entity_ref01": {}
+    }
+  }
+}

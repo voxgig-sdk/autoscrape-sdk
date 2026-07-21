@@ -1,0 +1,20 @@
+{
+  "existing": {
+    "building_permit": {
+      "BUILDING_PERMIT00": {
+        "id": "BUILDING_PERMIT00"
+      },
+      "BUILDING_PERMIT01": {
+        "id": "BUILDING_PERMIT01"
+      },
+      "BUILDING_PERMIT02": {
+        "id": "BUILDING_PERMIT02"
+      }
+    }
+  },
+  "new": {
+    "building_permit": {
+      "building_permit_ref01": {}
+    }
+  }
+}

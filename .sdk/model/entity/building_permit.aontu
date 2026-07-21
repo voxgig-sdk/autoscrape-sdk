@@ -1,0 +1,98 @@
+# Entity: building_permit
+
+main: kit: entity: building_permit: {
+
+  alias: field: {}
+
+  name: "building_permit"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "austin"
+                kind: "query"
+                name: "city"
+                orig: "city"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date_from"
+                orig: "date_from"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date_to"
+                orig: "date_to"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "keyword"
+                orig: "keyword"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 25
+                kind: "query"
+                name: "max_result"
+                orig: "max_result"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "permit_type"
+                orig: "permit_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/v1/building-permits/search"
+          parts: [
+            "v1"
+            "building-permits"
+            "search"
+          ]
+          select: {
+            "$action": "search"
+            exist: [
+              "city"
+              "date_from"
+              "date_to"
+              "keyword"
+              "max_result"
+              "permit_type"
+              "query"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
