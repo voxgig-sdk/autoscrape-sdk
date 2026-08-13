@@ -33,7 +33,7 @@ class Irs990EntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set AUTOSCRAPE_TEST_IRS_____ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set AUTOSCRAPE_TEST_IRS_990_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -77,17 +77,17 @@ function irs_990_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("AUTOSCRAPE_TEST_IRS_____ENTID");
+    $entid_env_raw = getenv("AUTOSCRAPE_TEST_IRS_990_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "AUTOSCRAPE_TEST_IRS_____ENTID" => $idmap,
+        "AUTOSCRAPE_TEST_IRS_990_ENTID" => $idmap,
         "AUTOSCRAPE_TEST_LIVE" => "FALSE",
         "AUTOSCRAPE_TEST_EXPLAIN" => "FALSE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["AUTOSCRAPE_TEST_IRS_____ENTID"]);
+        $env["AUTOSCRAPE_TEST_IRS_990_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }

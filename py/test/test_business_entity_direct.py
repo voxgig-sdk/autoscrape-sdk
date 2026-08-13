@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from autoscrape_sdk.utility.voxgig_struct import voxgig_struct as vs
 from autoscrape_sdk import AutoscrapeSDK
-from core import helpers
+from autoscrape_sdk.core import helpers
 from test import runner
 
 

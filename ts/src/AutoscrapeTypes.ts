@@ -9,24 +9,48 @@ export interface BuildingPermit {
 }
 
 export interface BuildingPermitLoadMatch {
+
+  // Selects a custom action instead of the plain load:
+  //   'search'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface BusinessEntity {
 }
 
 export interface BusinessEntityLoadMatch {
+
+  // Selects a custom action instead of the plain load:
+  //   'search'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Irs990 {
 }
 
 export interface Irs990LoadMatch {
+
+  // Selects a custom action instead of the plain load:
+  //   'search'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface SecEdgar {
 }
 
 export interface SecEdgarLoadMatch {
+
+  // Selects a custom action instead of the plain load:
+  //   'filing'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface StockData {
@@ -39,6 +63,12 @@ export interface Whoi {
 }
 
 export interface WhoiLoadMatch {
+
+  // Selects a custom action instead of the plain load:
+  //   'lookup'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface X402Paid {

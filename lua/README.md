@@ -48,7 +48,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local buildingpermit, err = client:BuildingPermit():load()
+local secedgar, err = client:SecEdgar():load()
 if err then error(err) end
 ```
 
@@ -106,7 +106,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:BuildingPermit():load()
+local result, err = client:SecEdgar():load()
 -- result is the returned data; err is set on failure
 ```
 
@@ -490,11 +490,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local buildingpermit = client:BuildingPermit()
-buildingpermit:load()
+local secedgar = client:SecEdgar()
+secedgar:load()
 
--- buildingpermit:data_get() now returns the buildingpermit data from the last load
--- buildingpermit:match_get() returns the last match criteria
+-- secedgar:data_get() now returns the secedgar data from the last load
+-- secedgar:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = AutoscrapeSDK.test()
-const buildingpermit = await client.BuildingPermit().load()
-// buildingpermit is a bare BuildingPermit populated with mock data
-console.log(buildingpermit)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = AutoscrapeSDK.test({
+  entity: {
+    sec_edgar: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const secedgar = await client.SecEdgar().load()
+// secedgar is the SecEdgar entity, populated with mock data
+// — call secedgar.data() for the record itself
+console.log(secedgar)
 ```
 
 ### Python
 
 ```python
 client = AutoscrapeSDK.test()
-buildingpermit = client.BuildingPermit().load()
-print(buildingpermit)
+secedgar = client.SecEdgar().load()
+print(secedgar)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(buildingpermit)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = AutoscrapeSDK::test([
-    "entity" => ["buildingpermit" => ["test01" => []]],
+    "entity" => ["secedgar" => ["test01" => []]],
 ]);
-$buildingpermit = $client->BuildingPermit()->load();
+$secedgar = $client->SecEdgar()->load();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.BuildingPermit(nil).Load(
+result, err := client.SecEdgar(nil).Load(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.BuildingPermit(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = AutoscrapeSDK.test({
-  "entity" => { "buildingpermit" => { "test01" => {} } },
+  "entity" => { "secedgar" => { "test01" => {} } },
 })
-buildingpermit = client.BuildingPermit.load()
+secedgar = client.SecEdgar.load()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:BuildingPermit():load()
+local result, err = client:SecEdgar():load()
 ```
 
 ## Packages
@@ -188,7 +197,7 @@ require_once 'autoscrape_sdk.php';
 $client = new AutoscrapeSDK();
 
 
-// Load a specific buildingpermit (returns the bare record; throws on error)
+// Load a specific buildingpermit (returns the ENTITY; call data_get() for the record; throws on error)
 $buildingpermit = $client->BuildingPermit()->load();
 print_r($buildingpermit);
 ```
@@ -216,7 +225,7 @@ require_relative "Autoscrape_sdk"
 client = AutoscrapeSDK.new
 
 
-# Load a specific buildingpermit (returns the bare record; raises on error)
+# Load a specific buildingpermit (returns the ENTITY; call data_get for the record)
 buildingpermit = client.BuildingPermit.load()
 puts buildingpermit
 ```
@@ -350,6 +359,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://www.payapi.market/provider/ava-torres](https://www.payapi.market/provider/ava-torres)
 

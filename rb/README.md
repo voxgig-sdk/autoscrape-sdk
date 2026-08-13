@@ -34,7 +34,7 @@ client = AutoscrapeSDK.new
 
 ```ruby
 begin
-  # load returns the bare BuildingPermit record (raises on error).
+  # load returns the ENTITY — call data_get for the BuildingPermit record (raises on error).
   buildingpermit = client.BuildingPermit.load()
   puts buildingpermit
 rescue => err
@@ -49,7 +49,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  buildingpermit = client.BuildingPermit.load()
+  secedgar = client.SecEdgar.load()
 rescue => err
   warn "load failed: #{err}"
 end
@@ -117,9 +117,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = AutoscrapeSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-buildingpermit = client.BuildingPermit.load()
-puts buildingpermit
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+secedgar = client.SecEdgar.load()
+puts secedgar
 ```
 
 ### Use a custom fetch function
@@ -317,7 +318,7 @@ Create an instance: `building_permit = client.BuildingPermit`
 #### Example: Load
 
 ```ruby
-# load returns the bare BuildingPermit record (raises on error).
+# load returns the ENTITY — call data_get for the BuildingPermit record (raises on error).
 building_permit = client.BuildingPermit.load()
 ```
 
@@ -335,7 +336,7 @@ Create an instance: `business_entity = client.BusinessEntity`
 #### Example: Load
 
 ```ruby
-# load returns the bare BusinessEntity record (raises on error).
+# load returns the ENTITY — call data_get for the BusinessEntity record (raises on error).
 business_entity = client.BusinessEntity.load()
 ```
 
@@ -353,7 +354,7 @@ Create an instance: `irs_990 = client.Irs990`
 #### Example: Load
 
 ```ruby
-# load returns the bare Irs990 record (raises on error).
+# load returns the ENTITY — call data_get for the Irs990 record (raises on error).
 irs_990 = client.Irs990.load()
 ```
 
@@ -371,7 +372,7 @@ Create an instance: `sec_edgar = client.SecEdgar`
 #### Example: Load
 
 ```ruby
-# load returns the bare SecEdgar record (raises on error).
+# load returns the ENTITY — call data_get for the SecEdgar record (raises on error).
 sec_edgar = client.SecEdgar.load()
 ```
 
@@ -389,7 +390,7 @@ Create an instance: `stock_data = client.StockData`
 #### Example: Load
 
 ```ruby
-# load returns the bare StockData record (raises on error).
+# load returns the ENTITY — call data_get for the StockData record (raises on error).
 stock_data = client.StockData.load()
 ```
 
@@ -407,7 +408,7 @@ Create an instance: `whoi = client.Whoi`
 #### Example: Load
 
 ```ruby
-# load returns the bare Whoi record (raises on error).
+# load returns the ENTITY — call data_get for the Whoi record (raises on error).
 whoi = client.Whoi.load()
 ```
 
@@ -425,7 +426,7 @@ Create an instance: `x402_paid = client.X402Paid`
 #### Example: Load
 
 ```ruby
-# load returns the bare X402Paid record (raises on error).
+# load returns the ENTITY — call data_get for the X402Paid record (raises on error).
 x402_paid = client.X402Paid.load()
 ```
 
@@ -506,11 +507,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-buildingpermit = client.BuildingPermit
-buildingpermit.load()
+secedgar = client.SecEdgar
+secedgar.load()
 
-# buildingpermit.data_get now returns the buildingpermit data from the last load
-# buildingpermit.match_get returns the last match criteria
+# secedgar.data_get now returns the secedgar data from the last load
+# secedgar.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

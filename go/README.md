@@ -66,12 +66,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-buildingpermit, err := client.BuildingPermit(nil).Load(nil, nil)
+secedgar, err := client.SecEdgar(nil).Load(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = buildingpermit
+_ = secedgar
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-buildingPermit, err := client.BuildingPermit(nil).Load(
+secEdgar, err := client.SecEdgar(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(buildingPermit) // the returned mock data
+fmt.Println(secEdgar) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -548,11 +548,11 @@ Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-buildingpermit := client.BuildingPermit(nil)
-buildingpermit.Load(nil, nil)
+secedgar := client.SecEdgar(nil)
+secedgar.Load(nil, nil)
 
-// buildingpermit.Data() now returns the buildingpermit data from the last load
-// buildingpermit.Match() returns the last match criteria
+// secedgar.Data() now returns the secedgar data from the last load
+// secedgar.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

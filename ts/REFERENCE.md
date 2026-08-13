@@ -184,6 +184,26 @@ Alias for `AutoscrapeSDK.test()`.
 const building_permit = client.BuildingPermit()
 ```
 
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `search` | `/v1/building-permits/search` | `client.BuildingPermit().load({ $action: 'search', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+BuildingPermit record — check the API definition for its shape.
+
+```ts
+const result = await client.BuildingPermit().load({
+  $action: 'search',
+  /* ...the action's own arguments */
+})
+```
+
 ### Operations
 
 #### `load(match: object, ctrl?: object)`
@@ -226,6 +246,26 @@ Return a copy of the entity options.
 
 ```ts
 const business_entity = client.BusinessEntity()
+```
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `search` | `/v1/business-entity/search` | `client.BusinessEntity().load({ $action: 'search', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+BusinessEntity record — check the API definition for its shape.
+
+```ts
+const result = await client.BusinessEntity().load({
+  $action: 'search',
+  /* ...the action's own arguments */
+})
 ```
 
 ### Operations
@@ -272,6 +312,26 @@ Return a copy of the entity options.
 const irs_990 = client.Irs990()
 ```
 
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `search` | `/v1/irs-990/search` | `client.Irs990().load({ $action: 'search', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Irs990 record — check the API definition for its shape.
+
+```ts
+const result = await client.Irs990().load({
+  $action: 'search',
+  /* ...the action's own arguments */
+})
+```
+
 ### Operations
 
 #### `load(match: object, ctrl?: object)`
@@ -314,6 +374,26 @@ Return a copy of the entity options.
 
 ```ts
 const sec_edgar = client.SecEdgar()
+```
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `filing` | `/v1/sec-edgar/filings` | `client.SecEdgar().load({ $action: 'filing', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+SecEdgar record — check the API definition for its shape.
+
+```ts
+const result = await client.SecEdgar().load({
+  $action: 'filing',
+  /* ...the action's own arguments */
+})
 ```
 
 ### Operations
@@ -402,6 +482,26 @@ Return a copy of the entity options.
 
 ```ts
 const whoi = client.Whoi()
+```
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `lookup` | `/v1/whois/lookup` | `client.Whoi().load({ $action: 'lookup', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Whoi record — check the API definition for its shape.
+
+```ts
+const result = await client.Whoi().load({
+  $action: 'lookup',
+  /* ...the action's own arguments */
+})
 ```
 
 ### Operations

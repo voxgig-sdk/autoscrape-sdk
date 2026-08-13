@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ AutoscrapeUtility::setRegistrar(function (AutoscrapeUtility $u): void {
     $u->prepare_params = [AutoscrapePrepareParams::class, 'call'];
     $u->prepare_path = [AutoscrapePreparePath::class, 'call'];
     $u->prepare_query = [AutoscrapePrepareQuery::class, 'call'];
+    $u->graphql_body = [AutoscrapeGraphql::class, 'body'];
+    $u->graphql_errors = [AutoscrapeGraphql::class, 'errors'];
     $u->result_basic = [AutoscrapeResultBasic::class, 'call'];
     $u->result_body = [AutoscrapeResultBody::class, 'call'];
     $u->result_headers = [AutoscrapeResultHeaders::class, 'call'];

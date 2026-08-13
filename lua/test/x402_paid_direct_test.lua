@@ -60,7 +60,7 @@ function x402_paid_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["AUTOSCRAPE_TEST_X____PAID_ENTID"] = {},
+    ["AUTOSCRAPE_TEST_X402_PAID_ENTID"] = {},
     ["AUTOSCRAPE_TEST_LIVE"] = "FALSE",
   })
 

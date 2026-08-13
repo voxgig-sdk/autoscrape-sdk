@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Autoscrape SDK exists test
 
 import pytest
 from autoscrape_sdk import AutoscrapeSDK

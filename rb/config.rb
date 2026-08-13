@@ -101,6 +101,7 @@ module AutoscrapeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/building-permits/search",
                   "parts" => [
@@ -182,6 +183,7 @@ module AutoscrapeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/business-entity/search",
                   "parts" => [
@@ -267,6 +269,7 @@ module AutoscrapeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/irs-990/search",
                   "parts" => [
@@ -369,6 +372,7 @@ module AutoscrapeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/sec-edgar/filings",
                   "parts" => [
@@ -442,6 +446,7 @@ module AutoscrapeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/stock/chart",
                   "parts" => [
@@ -493,6 +498,7 @@ module AutoscrapeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/whois/lookup",
                   "parts" => [
@@ -591,6 +597,7 @@ module AutoscrapeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/x402/v1/sec-edgar/filings",
                   "parts" => [
@@ -680,6 +687,7 @@ module AutoscrapeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/x402/v1/building-permits/search",
                   "parts" => [
@@ -752,6 +760,7 @@ module AutoscrapeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/x402/v1/irs-990/search",
                   "parts" => [
@@ -815,6 +824,7 @@ module AutoscrapeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/x402/v1/business-entity/search",
                   "parts" => [
@@ -852,6 +862,7 @@ module AutoscrapeConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/x402/v1/whois/lookup",
                   "parts" => [

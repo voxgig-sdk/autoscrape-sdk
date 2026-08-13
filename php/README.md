@@ -35,7 +35,7 @@ $client = new AutoscrapeSDK();
 
 ```php
 try {
-    // load() returns the bare BuildingPermit record (throws on error).
+    // load() returns the ENTITY — call data_get() for the BuildingPermit record (throws on error).
     $buildingpermit = $client->BuildingPermit()->load();
     print_r($buildingpermit);
 } catch (\Throwable $err) {
@@ -51,7 +51,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $buildingpermit = $client->BuildingPermit()->load();
+    $secedgar = $client->SecEdgar()->load();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -123,9 +123,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = AutoscrapeSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$buildingpermit = $client->BuildingPermit()->load();
-print_r($buildingpermit);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$secedgar = $client->SecEdgar()->load();
+print_r($secedgar);
 ```
 
 ### Use a custom fetch function
@@ -228,7 +229,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -327,7 +328,7 @@ Create an instance: `$building_permit = $client->BuildingPermit();`
 #### Example: Load
 
 ```php
-// load() returns the bare BuildingPermit record (throws on error).
+// load() returns the ENTITY — call data_get() for the BuildingPermit record (throws on error).
 $building_permit = $client->BuildingPermit()->load();
 ```
 
@@ -345,7 +346,7 @@ Create an instance: `$business_entity = $client->BusinessEntity();`
 #### Example: Load
 
 ```php
-// load() returns the bare BusinessEntity record (throws on error).
+// load() returns the ENTITY — call data_get() for the BusinessEntity record (throws on error).
 $business_entity = $client->BusinessEntity()->load();
 ```
 
@@ -363,7 +364,7 @@ Create an instance: `$irs_990 = $client->Irs990();`
 #### Example: Load
 
 ```php
-// load() returns the bare Irs990 record (throws on error).
+// load() returns the ENTITY — call data_get() for the Irs990 record (throws on error).
 $irs_990 = $client->Irs990()->load();
 ```
 
@@ -381,7 +382,7 @@ Create an instance: `$sec_edgar = $client->SecEdgar();`
 #### Example: Load
 
 ```php
-// load() returns the bare SecEdgar record (throws on error).
+// load() returns the ENTITY — call data_get() for the SecEdgar record (throws on error).
 $sec_edgar = $client->SecEdgar()->load();
 ```
 
@@ -399,7 +400,7 @@ Create an instance: `$stock_data = $client->StockData();`
 #### Example: Load
 
 ```php
-// load() returns the bare StockData record (throws on error).
+// load() returns the ENTITY — call data_get() for the StockData record (throws on error).
 $stock_data = $client->StockData()->load();
 ```
 
@@ -417,7 +418,7 @@ Create an instance: `$whoi = $client->Whoi();`
 #### Example: Load
 
 ```php
-// load() returns the bare Whoi record (throws on error).
+// load() returns the ENTITY — call data_get() for the Whoi record (throws on error).
 $whoi = $client->Whoi()->load();
 ```
 
@@ -435,7 +436,7 @@ Create an instance: `$x402_paid = $client->X402Paid();`
 #### Example: Load
 
 ```php
-// load() returns the bare X402Paid record (throws on error).
+// load() returns the ENTITY — call data_get() for the X402Paid record (throws on error).
 $x402_paid = $client->X402Paid()->load();
 ```
 
@@ -516,11 +517,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$buildingpermit = $client->BuildingPermit();
-$buildingpermit->load();
+$secedgar = $client->SecEdgar();
+$secedgar->load();
 
-// $buildingpermit->data_get() now returns the buildingpermit data from the last load
-// $buildingpermit->match_get() returns the last match criteria
+// $secedgar->data_get() now returns the secedgar data from the last load
+// $secedgar->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

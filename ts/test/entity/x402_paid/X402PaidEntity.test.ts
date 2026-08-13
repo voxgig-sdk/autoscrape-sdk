@@ -48,7 +48,7 @@ describe('X402PaidEntity', async () => {
     // fixture (entity TestData.json). Those don't exist on the live API.
     // Skip live runs unless the user provided a real ENTID env override.
     if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set AUTOSCRAPE_TEST_X____PAID_ENTID JSON to run live')
+      t.skip('live entity test uses synthetic IDs from fixture — set AUTOSCRAPE_TEST_X402_PAID_ENTID JSON to run live')
       return
     }
     const client = setup.client
@@ -62,7 +62,7 @@ describe('X402PaidEntity', async () => {
     // LOAD
     const x402_paid_ref01_ent = client.X402Paid()
     const x402_paid_ref01_match_dt0: any = {}
-    const x402_paid_ref01_data_dt0 = await x402_paid_ref01_ent.load(x402_paid_ref01_match_dt0)
+    const x402_paid_ref01_data_dt0 = (await x402_paid_ref01_ent.load(x402_paid_ref01_match_dt0)).data()
     assert(null != x402_paid_ref01_data_dt0)
 
 
@@ -106,16 +106,16 @@ function basicSetup(extra?: any) {
   // basic flow consumes synthetic IDs from the fixture file; without an
   // override those synthetic IDs reach the live API and 4xx. Surface this
   // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['AUTOSCRAPE_TEST_X____PAID_ENTID']
+  const idmapEnvVal = process.env['AUTOSCRAPE_TEST_X402_PAID_ENTID']
   const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
 
   const env = envOverride({
-    'AUTOSCRAPE_TEST_X____PAID_ENTID': idmap,
+    'AUTOSCRAPE_TEST_X402_PAID_ENTID': idmap,
     'AUTOSCRAPE_TEST_LIVE': 'FALSE',
     'AUTOSCRAPE_TEST_EXPLAIN': 'FALSE',
   })
 
-  idmap = env['AUTOSCRAPE_TEST_X____PAID_ENTID']
+  idmap = env['AUTOSCRAPE_TEST_X402_PAID_ENTID']
 
   const live = 'TRUE' === env.AUTOSCRAPE_TEST_LIVE
 

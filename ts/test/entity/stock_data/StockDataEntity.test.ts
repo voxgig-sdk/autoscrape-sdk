@@ -62,7 +62,7 @@ describe('StockDataEntity', async () => {
     // LOAD
     const stock_data_ref01_ent = client.StockData()
     const stock_data_ref01_match_dt0: any = {}
-    const stock_data_ref01_data_dt0 = await stock_data_ref01_ent.load(stock_data_ref01_match_dt0)
+    const stock_data_ref01_data_dt0 = (await stock_data_ref01_ent.load(stock_data_ref01_match_dt0)).data()
     assert(null != stock_data_ref01_data_dt0)
 
 

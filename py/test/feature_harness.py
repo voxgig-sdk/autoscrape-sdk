@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import AutoscrapeControl
-from core.error import AutoscrapeError
-from core.result import AutoscrapeResult
-from core.spec import AutoscrapeSpec
+from autoscrape_sdk.config import make_config
+from autoscrape_sdk.features import _make_feature
+from autoscrape_sdk.core.control import AutoscrapeControl
+from autoscrape_sdk.core.error import AutoscrapeError
+from autoscrape_sdk.core.result import AutoscrapeResult
+from autoscrape_sdk.core.spec import AutoscrapeSpec
 
 
 # True when this SDK was generated with the named feature.

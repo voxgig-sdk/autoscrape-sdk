@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import AutoscrapeSDK
-from core.error import AutoscrapeError
-from core.result import AutoscrapeResult
-from core.response import AutoscrapeResponse
-from core.spec import AutoscrapeSpec
-from feature.base_feature import AutoscrapeBaseFeature
+from projectname_sdk.core.error import AutoscrapeError
+from projectname_sdk.core.result import AutoscrapeResult
+from projectname_sdk.core.response import AutoscrapeResponse
+from projectname_sdk.core.spec import AutoscrapeSpec
+from projectname_sdk.feature.base_feature import AutoscrapeBaseFeature
 
 
 def _client():

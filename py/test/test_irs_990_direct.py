@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from autoscrape_sdk.utility.voxgig_struct import voxgig_struct as vs
 from autoscrape_sdk import AutoscrapeSDK
-from core import helpers
+from autoscrape_sdk.core import helpers
 from test import runner
 
 
@@ -56,7 +56,7 @@ def _irs_990_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "AUTOSCRAPE_TEST_IRS_____ENTID": {},
+        "AUTOSCRAPE_TEST_IRS_990_ENTID": {},
         "AUTOSCRAPE_TEST_LIVE": "FALSE",
     })
 

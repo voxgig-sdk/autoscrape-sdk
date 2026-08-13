@@ -53,8 +53,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const buildingpermit = await client.BuildingPermit().load()
-  console.log(buildingpermit)
+  const secedgar = await client.SecEdgar().load()
+  console.log(secedgar)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -120,9 +120,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = AutoscrapeSDK.test()
 
-const buildingpermit = await client.BuildingPermit().load()
-// buildingpermit is a bare entity populated with mock response data
-console.log(buildingpermit)
+const secedgar = await client.SecEdgar().load()
+// secedgar is the entity, populated with mock response data
+// — call secedgar.data() for the record itself
+console.log(secedgar)
 ```
 
 You can also use the instance method:
@@ -137,7 +138,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.BuildingPermit()
+const entity = client.SecEdgar()
 
 // First call runs the operation and stores its result
 await entity.load()
@@ -542,11 +543,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const buildingpermit = client.BuildingPermit()
-await buildingpermit.load()
+const secedgar = client.SecEdgar()
+await secedgar.load()
 
-// buildingpermit.data() now returns the buildingpermit data from the last `load`
-// buildingpermit.match() returns the last match criteria
+// secedgar.data() now returns the secedgar data from the last `load`
+// secedgar.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

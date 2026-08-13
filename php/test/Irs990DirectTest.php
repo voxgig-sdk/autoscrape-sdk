@@ -65,7 +65,7 @@ function irs_990_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "AUTOSCRAPE_TEST_IRS_____ENTID" => [],
+        "AUTOSCRAPE_TEST_IRS_990_ENTID" => [],
         "AUTOSCRAPE_TEST_LIVE" => "FALSE",
     ]);
 

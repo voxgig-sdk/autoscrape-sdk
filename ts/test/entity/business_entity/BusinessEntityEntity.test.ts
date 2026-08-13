@@ -62,7 +62,7 @@ describe('BusinessEntityEntity', async () => {
     // LOAD
     const business_entity_ref01_ent = client.BusinessEntity()
     const business_entity_ref01_match_dt0: any = {}
-    const business_entity_ref01_data_dt0 = await business_entity_ref01_ent.load(business_entity_ref01_match_dt0)
+    const business_entity_ref01_data_dt0 = (await business_entity_ref01_ent.load(business_entity_ref01_match_dt0)).data()
     assert(null != business_entity_ref01_data_dt0)
 
 

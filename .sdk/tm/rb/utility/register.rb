@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ AutoscrapeUtility.registrar = ->(u) {
   u.prepare_params = AutoscrapeUtilities::PrepareParams
   u.prepare_path = AutoscrapeUtilities::PreparePath
   u.prepare_query = AutoscrapeUtilities::PrepareQuery
+  u.graphql_body = AutoscrapeUtilities::GraphqlBody
+  u.graphql_errors = AutoscrapeUtilities::GraphqlErrors
   u.result_basic = AutoscrapeUtilities::ResultBasic
   u.result_body = AutoscrapeUtilities::ResultBody
   u.result_headers = AutoscrapeUtilities::ResultHeaders

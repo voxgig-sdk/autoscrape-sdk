@@ -35,7 +35,8 @@ func TestIrs990Direct(t *testing.T) {
 		if setup.live {
 			// Live mode is lenient: synthetic IDs frequently 4xx. Skip
 			// rather than fail when the load endpoint isn't reachable with
-			// the IDs we can construct from setup.idmap.
+			// the IDs we can construct from setup.idmap — unless the model
+			// sets main.kit.test.live.strict.
 			if err != nil {
 				t.Skipf("load call failed (likely synthetic IDs against live API): %v", err)
 			}
@@ -97,7 +98,7 @@ func irs_990DirectSetup(mockres any) *irs_990DirectSetupResult {
 	calls := &[]map[string]any{}
 
 	env := envOverride(map[string]any{
-		"AUTOSCRAPE_TEST_IRS_____ENTID": map[string]any{},
+		"AUTOSCRAPE_TEST_IRS_990_ENTID": map[string]any{},
 		"AUTOSCRAPE_TEST_LIVE":    "FALSE",
 	})
 
@@ -109,7 +110,7 @@ func irs_990DirectSetup(mockres any) *irs_990DirectSetupResult {
 		client := sdk.NewAutoscrapeSDK(mergedOpts)
 
 		idmap := map[string]any{}
-		if entidRaw, ok := env["AUTOSCRAPE_TEST_IRS_____ENTID"]; ok {
+		if entidRaw, ok := env["AUTOSCRAPE_TEST_IRS_990_ENTID"]; ok {
 			if entidStr, ok := entidRaw.(string); ok && strings.HasPrefix(entidStr, "{") {
 				json.Unmarshal([]byte(entidStr), &idmap)
 			} else if entidMap, ok := entidRaw.(map[string]any); ok {

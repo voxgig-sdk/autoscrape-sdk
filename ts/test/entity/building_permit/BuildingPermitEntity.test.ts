@@ -62,7 +62,7 @@ describe('BuildingPermitEntity', async () => {
     // LOAD
     const building_permit_ref01_ent = client.BuildingPermit()
     const building_permit_ref01_match_dt0: any = {}
-    const building_permit_ref01_data_dt0 = await building_permit_ref01_ent.load(building_permit_ref01_match_dt0)
+    const building_permit_ref01_data_dt0 = (await building_permit_ref01_ent.load(building_permit_ref01_match_dt0)).data()
     assert(null != building_permit_ref01_data_dt0)
 
 

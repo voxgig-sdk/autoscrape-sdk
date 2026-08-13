@@ -38,7 +38,7 @@ client = AutoscrapeSDK()
 
 ### 3. Load a buildingpermit
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -55,8 +55,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    buildingpermit = client.BuildingPermit().load()
-    print(buildingpermit)
+    secedgar = client.SecEdgar().load()
+    print(secedgar)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -122,9 +122,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = AutoscrapeSDK.test()
 
-# Entity ops return the bare record and raise on error.
-buildingpermit = client.BuildingPermit().load()
-# buildingpermit contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+secedgar = client.SecEdgar().load()
+# secedgar contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -224,7 +225,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -504,11 +505,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-buildingpermit = client.BuildingPermit()
-buildingpermit.load()
+secedgar = client.SecEdgar()
+secedgar.load()
 
-# buildingpermit.data_get() now returns the buildingpermit data from the last load
-# buildingpermit.match_get() returns the last match criteria
+# secedgar.data_get() now returns the secedgar data from the last load
+# secedgar.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -62,7 +62,7 @@ describe('WhoiEntity', async () => {
     // LOAD
     const whoi_ref01_ent = client.Whoi()
     const whoi_ref01_match_dt0: any = {}
-    const whoi_ref01_data_dt0 = await whoi_ref01_ent.load(whoi_ref01_match_dt0)
+    const whoi_ref01_data_dt0 = (await whoi_ref01_ent.load(whoi_ref01_match_dt0)).data()
     assert(null != whoi_ref01_data_dt0)
 
 

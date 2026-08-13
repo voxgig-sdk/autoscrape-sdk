@@ -62,7 +62,7 @@ describe('SecEdgarEntity', async () => {
     // LOAD
     const sec_edgar_ref01_ent = client.SecEdgar()
     const sec_edgar_ref01_match_dt0: any = {}
-    const sec_edgar_ref01_data_dt0 = await sec_edgar_ref01_ent.load(sec_edgar_ref01_match_dt0)
+    const sec_edgar_ref01_data_dt0 = (await sec_edgar_ref01_ent.load(sec_edgar_ref01_match_dt0)).data()
     assert(null != sec_edgar_ref01_data_dt0)
 
 
