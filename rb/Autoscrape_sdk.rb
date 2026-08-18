@@ -28,7 +28,7 @@ class AutoscrapeSDK
     utility = AutoscrapeUtility.new
     @_utility = utility
 
-    config = AutoscrapeConfig.make_config
+    config = AutoscrapeConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

@@ -40,7 +40,7 @@ class AutoscrapeSDK
         $utility = new AutoscrapeUtility();
         $this->_utility = $utility;
 
-        $config = AutoscrapeConfig::make_config();
+        $config = AutoscrapeConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

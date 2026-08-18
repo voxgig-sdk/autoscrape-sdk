@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class AutoscrapeConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -43,65 +66,50 @@ class AutoscrapeConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'austin',
                         'kind' => 'query',
                         'name' => 'city',
                         'orig' => 'city',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'date_from',
                         'orig' => 'date_from',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'date_to',
                         'orig' => 'date_to',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'keyword',
                         'orig' => 'keyword',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'max_result',
                         'orig' => 'max_result',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'permit_type',
                         'orig' => 'permit_type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -130,10 +138,8 @@ class AutoscrapeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -149,41 +155,32 @@ class AutoscrapeConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'fetch_detail',
                         'orig' => 'fetch_detail',
-                        'reqd' => false,
                         'type' => '`$BOOLEAN`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'max_result',
                         'orig' => 'max_result',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'Apple Inc',
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'state',
                         'orig' => 'state',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -209,10 +206,8 @@ class AutoscrapeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -228,48 +223,37 @@ class AutoscrapeConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'ein',
                         'orig' => 'ein',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'fetch_detail',
                         'orig' => 'fetch_detail',
-                        'reqd' => false,
                         'type' => '`$BOOLEAN`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'max_result',
                         'orig' => 'max_result',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'state',
                         'orig' => 'state',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -296,10 +280,8 @@ class AutoscrapeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -315,64 +297,49 @@ class AutoscrapeConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'cik',
                         'orig' => 'cik',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'date_from',
                         'orig' => 'date_from',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'date_to',
                         'orig' => 'date_to',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'form_type',
                         'orig' => 'form_type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 100,
                         'kind' => 'query',
                         'name' => 'max_filing',
                         'orig' => 'max_filing',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'ticker',
                         'orig' => 'ticker',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -401,10 +368,8 @@ class AutoscrapeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -420,29 +385,23 @@ class AutoscrapeConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => '1d',
                         'kind' => 'query',
                         'name' => 'interval',
                         'orig' => 'interval',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '1mo',
                         'kind' => 'query',
                         'name' => 'range',
                         'orig' => 'range',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'symbol',
                         'orig' => 'symbol',
@@ -470,10 +429,8 @@ class AutoscrapeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -489,16 +446,13 @@ class AutoscrapeConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'apple.com',
                         'kind' => 'query',
                         'name' => 'domain',
                         'orig' => 'domain',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -521,10 +475,8 @@ class AutoscrapeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -540,64 +492,49 @@ class AutoscrapeConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'cik',
                         'orig' => 'cik',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'date_from',
                         'orig' => 'date_from',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'date_to',
                         'orig' => 'date_to',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'form_type',
                         'orig' => 'form_type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 100,
                         'kind' => 'query',
                         'name' => 'max_filing',
                         'orig' => 'max_filing',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'ticker',
                         'orig' => 'ticker',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -626,68 +563,52 @@ class AutoscrapeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'austin',
                         'kind' => 'query',
                         'name' => 'city',
                         'orig' => 'city',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'date_from',
                         'orig' => 'date_from',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'date_to',
                         'orig' => 'date_to',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'keyword',
                         'orig' => 'keyword',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'max_result',
                         'orig' => 'max_result',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'permit_type',
                         'orig' => 'permit_type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -716,51 +637,39 @@ class AutoscrapeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'ein',
                         'orig' => 'ein',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'fetch_detail',
                         'orig' => 'fetch_detail',
-                        'reqd' => false,
                         'type' => '`$BOOLEAN`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'max_result',
                         'orig' => 'max_result',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'state',
                         'orig' => 'state',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -787,44 +696,34 @@ class AutoscrapeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 2,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'fetch_detail',
                         'orig' => 'fetch_detail',
-                        'reqd' => false,
                         'type' => '`$BOOLEAN`',
                       ],
                       [
-                        'active' => true,
                         'example' => 25,
                         'kind' => 'query',
                         'name' => 'max_result',
                         'orig' => 'max_result',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'Apple Inc',
                         'kind' => 'query',
                         'name' => 'query',
                         'orig' => 'query',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'state',
                         'orig' => 'state',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -850,19 +749,15 @@ class AutoscrapeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 3,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'apple.com',
                         'kind' => 'query',
                         'name' => 'domain',
                         'orig' => 'domain',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -885,10 +780,8 @@ class AutoscrapeConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 4,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
