@@ -33,6 +33,9 @@ class AutoscrapeConfig
         return [
             "main" => [
                 "name" => "Autoscrape",
+                "slug" => "autoscrape",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [

@@ -19,6 +19,9 @@ module AutoscrapeConfig
     {
       "main" => {
         "name" => "Autoscrape",
+        "slug" => "autoscrape",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
