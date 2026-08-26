@@ -43,7 +43,8 @@ class Irs990Entity extends AutoscrapeEntityBase<Irs990> {
     const {
       makeContext,
       done,
-      error,
+      // The registry name is `makeError`; `error` is the local alias.
+      makeError: error,
       featureHook,
       makePoint,
       makeRequest,
