@@ -20,53 +20,83 @@ class BuildingPermit(TypedDict):
     pass
 
 
-class BuildingPermitLoadMatch(TypedDict):
-    pass
+class BuildingPermitLoadMatch(TypedDict, total=False):
+    city: str
+    date_from: str
+    date_to: str
+    keyword: str
+    max_result: int
+    permit_type: str
+    query: str
 
 
 class BusinessEntity(TypedDict):
     pass
 
 
-class BusinessEntityLoadMatch(TypedDict):
-    pass
+class BusinessEntityLoadMatch(TypedDict, total=False):
+    fetch_detail: bool
+    max_result: int
+    query: str
+    state: str
 
 
 class Irs990(TypedDict):
     pass
 
 
-class Irs990LoadMatch(TypedDict):
-    pass
+class Irs990LoadMatch(TypedDict, total=False):
+    ein: str
+    fetch_detail: bool
+    max_result: int
+    query: str
+    state: str
 
 
 class SecEdgar(TypedDict):
     pass
 
 
-class SecEdgarLoadMatch(TypedDict):
-    pass
+class SecEdgarLoadMatch(TypedDict, total=False):
+    cik: str
+    date_from: str
+    date_to: str
+    form_type: str
+    max_filing: int
+    query: str
+    ticker: str
 
 
 class StockData(TypedDict):
     pass
 
 
-class StockDataLoadMatch(TypedDict):
-    pass
+class StockDataLoadMatchRequired(TypedDict):
+    symbol: str
+
+
+class StockDataLoadMatch(StockDataLoadMatchRequired, total=False):
+    interval: str
+    range: str
 
 
 class Whoi(TypedDict):
     pass
 
 
-class WhoiLoadMatch(TypedDict):
-    pass
+class WhoiLoadMatch(TypedDict, total=False):
+    domain: str
 
 
 class X402Paid(TypedDict):
     pass
 
 
-class X402PaidLoadMatch(TypedDict):
-    pass
+class X402PaidLoadMatch(TypedDict, total=False):
+    cik: str
+    date_from: str
+    date_to: str
+    form_type: str
+    max_filing: int
+    query: str
+    ticker: str

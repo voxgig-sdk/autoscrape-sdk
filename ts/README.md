@@ -436,7 +436,7 @@ Create an instance: `const stock_data = client.StockData()`
 #### Example: Load
 
 ```ts
-const stock_data = await client.StockData().load()
+const stock_data = await client.StockData().load({ symbol: 'symbol' })
 ```
 
 
@@ -472,6 +472,29 @@ Create an instance: `const x402_paid = client.X402Paid()`
 ```ts
 const x402_paid = await client.X402Paid().load()
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

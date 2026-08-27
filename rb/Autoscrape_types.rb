@@ -13,54 +13,197 @@ class BuildingPermit
 end
 
 # Request payload for BuildingPermit#load.
-class BuildingPermitLoadMatch
-end
+#
+# @!attribute [rw] city
+#   @return [String, nil]
+#
+# @!attribute [rw] date_from
+#   @return [String, nil]
+#
+# @!attribute [rw] date_to
+#   @return [String, nil]
+#
+# @!attribute [rw] keyword
+#   @return [String, nil]
+#
+# @!attribute [rw] max_result
+#   @return [Integer, nil]
+#
+# @!attribute [rw] permit_type
+#   @return [String, nil]
+#
+# @!attribute [rw] query
+#   @return [String, nil]
+BuildingPermitLoadMatch = Struct.new(
+  :city,
+  :date_from,
+  :date_to,
+  :keyword,
+  :max_result,
+  :permit_type,
+  :query,
+  keyword_init: true
+)
 
 # BusinessEntity entity data model.
 class BusinessEntity
 end
 
 # Request payload for BusinessEntity#load.
-class BusinessEntityLoadMatch
-end
+#
+# @!attribute [rw] fetch_detail
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] max_result
+#   @return [Integer, nil]
+#
+# @!attribute [rw] query
+#   @return [String, nil]
+#
+# @!attribute [rw] state
+#   @return [String, nil]
+BusinessEntityLoadMatch = Struct.new(
+  :fetch_detail,
+  :max_result,
+  :query,
+  :state,
+  keyword_init: true
+)
 
 # Irs990 entity data model.
 class Irs990
 end
 
 # Request payload for Irs990#load.
-class Irs990LoadMatch
-end
+#
+# @!attribute [rw] ein
+#   @return [String, nil]
+#
+# @!attribute [rw] fetch_detail
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] max_result
+#   @return [Integer, nil]
+#
+# @!attribute [rw] query
+#   @return [String, nil]
+#
+# @!attribute [rw] state
+#   @return [String, nil]
+Irs990LoadMatch = Struct.new(
+  :ein,
+  :fetch_detail,
+  :max_result,
+  :query,
+  :state,
+  keyword_init: true
+)
 
 # SecEdgar entity data model.
 class SecEdgar
 end
 
 # Request payload for SecEdgar#load.
-class SecEdgarLoadMatch
-end
+#
+# @!attribute [rw] cik
+#   @return [String, nil]
+#
+# @!attribute [rw] date_from
+#   @return [String, nil]
+#
+# @!attribute [rw] date_to
+#   @return [String, nil]
+#
+# @!attribute [rw] form_type
+#   @return [String, nil]
+#
+# @!attribute [rw] max_filing
+#   @return [Integer, nil]
+#
+# @!attribute [rw] query
+#   @return [String, nil]
+#
+# @!attribute [rw] ticker
+#   @return [String, nil]
+SecEdgarLoadMatch = Struct.new(
+  :cik,
+  :date_from,
+  :date_to,
+  :form_type,
+  :max_filing,
+  :query,
+  :ticker,
+  keyword_init: true
+)
 
 # StockData entity data model.
 class StockData
 end
 
 # Request payload for StockData#load.
-class StockDataLoadMatch
-end
+#
+# @!attribute [rw] interval
+#   @return [String, nil]
+#
+# @!attribute [rw] range
+#   @return [String, nil]
+#
+# @!attribute [rw] symbol
+#   @return [String]
+StockDataLoadMatch = Struct.new(
+  :interval,
+  :range,
+  :symbol,
+  keyword_init: true
+)
 
 # Whoi entity data model.
 class Whoi
 end
 
 # Request payload for Whoi#load.
-class WhoiLoadMatch
-end
+#
+# @!attribute [rw] domain
+#   @return [String, nil]
+WhoiLoadMatch = Struct.new(
+  :domain,
+  keyword_init: true
+)
 
 # X402Paid entity data model.
 class X402Paid
 end
 
 # Request payload for X402Paid#load.
-class X402PaidLoadMatch
-end
+#
+# @!attribute [rw] cik
+#   @return [String, nil]
+#
+# @!attribute [rw] date_from
+#   @return [String, nil]
+#
+# @!attribute [rw] date_to
+#   @return [String, nil]
+#
+# @!attribute [rw] form_type
+#   @return [String, nil]
+#
+# @!attribute [rw] max_filing
+#   @return [Integer, nil]
+#
+# @!attribute [rw] query
+#   @return [String, nil]
+#
+# @!attribute [rw] ticker
+#   @return [String, nil]
+X402PaidLoadMatch = Struct.new(
+  :cik,
+  :date_from,
+  :date_to,
+  :form_type,
+  :max_filing,
+  :query,
+  :ticker,
+  keyword_init: true
+)
 

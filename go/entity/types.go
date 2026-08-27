@@ -18,6 +18,13 @@ type BuildingPermit struct {
 
 // BuildingPermitLoadMatch is the typed request payload for BuildingPermit.LoadTyped.
 type BuildingPermitLoadMatch struct {
+	City *string `json:"city,omitempty"`
+	DateFrom *string `json:"date_from,omitempty"`
+	DateTo *string `json:"date_to,omitempty"`
+	Keyword *string `json:"keyword,omitempty"`
+	MaxResult *int `json:"max_result,omitempty"`
+	PermitType *string `json:"permit_type,omitempty"`
+	Query *string `json:"query,omitempty"`
 }
 
 // BusinessEntity is the typed data model for the business_entity entity.
@@ -26,6 +33,10 @@ type BusinessEntity struct {
 
 // BusinessEntityLoadMatch is the typed request payload for BusinessEntity.LoadTyped.
 type BusinessEntityLoadMatch struct {
+	FetchDetail *bool `json:"fetch_detail,omitempty"`
+	MaxResult *int `json:"max_result,omitempty"`
+	Query *string `json:"query,omitempty"`
+	State *string `json:"state,omitempty"`
 }
 
 // Irs990 is the typed data model for the irs_990 entity.
@@ -34,6 +45,11 @@ type Irs990 struct {
 
 // Irs990LoadMatch is the typed request payload for Irs990.LoadTyped.
 type Irs990LoadMatch struct {
+	Ein *string `json:"ein,omitempty"`
+	FetchDetail *bool `json:"fetch_detail,omitempty"`
+	MaxResult *int `json:"max_result,omitempty"`
+	Query *string `json:"query,omitempty"`
+	State *string `json:"state,omitempty"`
 }
 
 // SecEdgar is the typed data model for the sec_edgar entity.
@@ -42,6 +58,13 @@ type SecEdgar struct {
 
 // SecEdgarLoadMatch is the typed request payload for SecEdgar.LoadTyped.
 type SecEdgarLoadMatch struct {
+	Cik *string `json:"cik,omitempty"`
+	DateFrom *string `json:"date_from,omitempty"`
+	DateTo *string `json:"date_to,omitempty"`
+	FormType *string `json:"form_type,omitempty"`
+	MaxFiling *int `json:"max_filing,omitempty"`
+	Query *string `json:"query,omitempty"`
+	Ticker *string `json:"ticker,omitempty"`
 }
 
 // StockData is the typed data model for the stock_data entity.
@@ -50,6 +73,9 @@ type StockData struct {
 
 // StockDataLoadMatch is the typed request payload for StockData.LoadTyped.
 type StockDataLoadMatch struct {
+	Interval *string `json:"interval,omitempty"`
+	Range *string `json:"range,omitempty"`
+	Symbol string `json:"symbol"`
 }
 
 // Whoi is the typed data model for the whoi entity.
@@ -58,6 +84,7 @@ type Whoi struct {
 
 // WhoiLoadMatch is the typed request payload for Whoi.LoadTyped.
 type WhoiLoadMatch struct {
+	Domain *string `json:"domain,omitempty"`
 }
 
 // X402Paid is the typed data model for the x402_paid entity.
@@ -66,6 +93,13 @@ type X402Paid struct {
 
 // X402PaidLoadMatch is the typed request payload for X402Paid.LoadTyped.
 type X402PaidLoadMatch struct {
+	Cik *string `json:"cik,omitempty"`
+	DateFrom *string `json:"date_from,omitempty"`
+	DateTo *string `json:"date_to,omitempty"`
+	FormType *string `json:"form_type,omitempty"`
+	MaxFiling *int `json:"max_filing,omitempty"`
+	Query *string `json:"query,omitempty"`
+	Ticker *string `json:"ticker,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
