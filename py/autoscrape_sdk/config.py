@@ -1,6 +1,14 @@
 # Autoscrape SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -116,10 +124,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v1/building-permits/search",
-                "parts": [
-                  "v1",
-                  "building-permits",
-                  "search",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "building-permits",
+                  },
+                  {
+                    "lit": "search",
+                  },
                 ],
                 "select": {
                   "$action": "search",
@@ -137,6 +151,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "v1",
+                  "building-permits",
+                  "search",
+                ],
               },
             ],
           },
@@ -187,10 +206,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v1/business-entity/search",
-                "parts": [
-                  "v1",
-                  "business-entity",
-                  "search",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "business-entity",
+                  },
+                  {
+                    "lit": "search",
+                  },
                 ],
                 "select": {
                   "$action": "search",
@@ -205,6 +230,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "v1",
+                  "business-entity",
+                  "search",
+                ],
               },
             ],
           },
@@ -260,10 +290,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v1/irs-990/search",
-                "parts": [
-                  "v1",
-                  "irs-990",
-                  "search",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "irs-990",
+                  },
+                  {
+                    "lit": "search",
+                  },
                 ],
                 "select": {
                   "$action": "search",
@@ -279,6 +315,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "v1",
+                  "irs-990",
+                  "search",
+                ],
               },
             ],
           },
@@ -346,10 +387,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v1/sec-edgar/filings",
-                "parts": [
-                  "v1",
-                  "sec-edgar",
-                  "filings",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "sec-edgar",
+                  },
+                  {
+                    "lit": "filings",
+                  },
                 ],
                 "select": {
                   "$action": "filing",
@@ -367,6 +414,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "v1",
+                  "sec-edgar",
+                  "filings",
+                ],
               },
             ],
           },
@@ -412,10 +464,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v1/stock/chart",
-                "parts": [
-                  "v1",
-                  "stock",
-                  "chart",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "stock",
+                  },
+                  {
+                    "lit": "chart",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -428,6 +486,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "v1",
+                  "stock",
+                  "chart",
+                ],
               },
             ],
           },
@@ -459,10 +522,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v1/whois/lookup",
-                "parts": [
-                  "v1",
-                  "whois",
-                  "lookup",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "whois",
+                  },
+                  {
+                    "lit": "lookup",
+                  },
                 ],
                 "select": {
                   "$action": "lookup",
@@ -474,6 +543,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "v1",
+                  "whois",
+                  "lookup",
+                ],
               },
             ],
           },
@@ -541,11 +615,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/x402/v1/sec-edgar/filings",
-                "parts": [
-                  "x402",
-                  "v1",
-                  "sec-edgar",
-                  "filings",
+                "segments": [
+                  {
+                    "lit": "x402",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "sec-edgar",
+                  },
+                  {
+                    "lit": "filings",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -562,6 +644,12 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "x402",
+                  "v1",
+                  "sec-edgar",
+                  "filings",
+                ],
               },
               {
                 "args": {
@@ -615,11 +703,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/x402/v1/building-permits/search",
-                "parts": [
-                  "x402",
-                  "v1",
-                  "building-permits",
-                  "search",
+                "segments": [
+                  {
+                    "lit": "x402",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "building-permits",
+                  },
+                  {
+                    "lit": "search",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -636,6 +732,12 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "x402",
+                  "v1",
+                  "building-permits",
+                  "search",
+                ],
               },
               {
                 "args": {
@@ -676,11 +778,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/x402/v1/irs-990/search",
-                "parts": [
-                  "x402",
-                  "v1",
-                  "irs-990",
-                  "search",
+                "segments": [
+                  {
+                    "lit": "x402",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "irs-990",
+                  },
+                  {
+                    "lit": "search",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -695,6 +805,12 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "x402",
+                  "v1",
+                  "irs-990",
+                  "search",
+                ],
               },
               {
                 "args": {
@@ -730,11 +846,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/x402/v1/business-entity/search",
-                "parts": [
-                  "x402",
-                  "v1",
-                  "business-entity",
-                  "search",
+                "segments": [
+                  {
+                    "lit": "x402",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "business-entity",
+                  },
+                  {
+                    "lit": "search",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -748,6 +872,12 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "x402",
+                  "v1",
+                  "business-entity",
+                  "search",
+                ],
               },
               {
                 "args": {
@@ -764,11 +894,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/x402/v1/whois/lookup",
-                "parts": [
-                  "x402",
-                  "v1",
-                  "whois",
-                  "lookup",
+                "segments": [
+                  {
+                    "lit": "x402",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "whois",
+                  },
+                  {
+                    "lit": "lookup",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -779,6 +917,12 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "x402",
+                  "v1",
+                  "whois",
+                  "lookup",
+                ],
               },
             ],
           },

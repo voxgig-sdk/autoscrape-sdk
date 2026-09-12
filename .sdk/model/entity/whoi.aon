@@ -24,10 +24,16 @@ main: kit: entity: whoi: {
           }
           method: "GET"
           orig: "/v1/whois/lookup"
-          parts: [
-            "v1"
-            "whois"
-            "lookup"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "whois"
+            }
+            {
+              lit: "lookup"
+            }
           ]
           select: {
             "$action": "lookup"

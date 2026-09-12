@@ -50,7 +50,7 @@ func TestX402PaidEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		x402PaidRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.x402_paid", setup.data)))
+		x402PaidRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.x402_paid")))
 		var x402PaidRef01Data map[string]any
 		if len(x402PaidRef01DataRaw) > 0 {
 			x402PaidRef01Data = core.ToMapAny(x402PaidRef01DataRaw[0][1])
@@ -97,7 +97,7 @@ func x402_paidBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"x402_paid01", "x402_paid02", "x402_paid03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -125,10 +125,22 @@ func x402_paidBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["AUTOSCRAPE_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewAutoscrapeSDK(core.ToMapAny(mergedOpts))
 	}

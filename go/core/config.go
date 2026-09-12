@@ -99,10 +99,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/building-permits/search",
-								"parts": []any{
-									"v1",
-									"building-permits",
-									"search",
+								"segments": []any{
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "building-permits",
+									},
+									map[string]any{
+										"lit": "search",
+									},
 								},
 								"select": map[string]any{
 									"$action": "search",
@@ -119,6 +125,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v1",
+									"building-permits",
+									"search",
 								},
 							},
 						},
@@ -170,10 +181,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/business-entity/search",
-								"parts": []any{
-									"v1",
-									"business-entity",
-									"search",
+								"segments": []any{
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "business-entity",
+									},
+									map[string]any{
+										"lit": "search",
+									},
 								},
 								"select": map[string]any{
 									"$action": "search",
@@ -187,6 +204,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v1",
+									"business-entity",
+									"search",
 								},
 							},
 						},
@@ -243,10 +265,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/irs-990/search",
-								"parts": []any{
-									"v1",
-									"irs-990",
-									"search",
+								"segments": []any{
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "irs-990",
+									},
+									map[string]any{
+										"lit": "search",
+									},
 								},
 								"select": map[string]any{
 									"$action": "search",
@@ -261,6 +289,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v1",
+									"irs-990",
+									"search",
 								},
 							},
 						},
@@ -329,10 +362,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/sec-edgar/filings",
-								"parts": []any{
-									"v1",
-									"sec-edgar",
-									"filings",
+								"segments": []any{
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "sec-edgar",
+									},
+									map[string]any{
+										"lit": "filings",
+									},
 								},
 								"select": map[string]any{
 									"$action": "filing",
@@ -349,6 +388,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v1",
+									"sec-edgar",
+									"filings",
 								},
 							},
 						},
@@ -395,10 +439,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/stock/chart",
-								"parts": []any{
-									"v1",
-									"stock",
-									"chart",
+								"segments": []any{
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "stock",
+									},
+									map[string]any{
+										"lit": "chart",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -410,6 +460,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v1",
+									"stock",
+									"chart",
 								},
 							},
 						},
@@ -442,10 +497,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/whois/lookup",
-								"parts": []any{
-									"v1",
-									"whois",
-									"lookup",
+								"segments": []any{
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "whois",
+									},
+									map[string]any{
+										"lit": "lookup",
+									},
 								},
 								"select": map[string]any{
 									"$action": "lookup",
@@ -456,6 +517,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"v1",
+									"whois",
+									"lookup",
 								},
 							},
 						},
@@ -524,11 +590,19 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/x402/v1/sec-edgar/filings",
-								"parts": []any{
-									"x402",
-									"v1",
-									"sec-edgar",
-									"filings",
+								"segments": []any{
+									map[string]any{
+										"lit": "x402",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "sec-edgar",
+									},
+									map[string]any{
+										"lit": "filings",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -544,6 +618,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"x402",
+									"v1",
+									"sec-edgar",
+									"filings",
 								},
 							},
 							map[string]any{
@@ -598,11 +678,19 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/x402/v1/building-permits/search",
-								"parts": []any{
-									"x402",
-									"v1",
-									"building-permits",
-									"search",
+								"segments": []any{
+									map[string]any{
+										"lit": "x402",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "building-permits",
+									},
+									map[string]any{
+										"lit": "search",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -618,6 +706,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"x402",
+									"v1",
+									"building-permits",
+									"search",
 								},
 							},
 							map[string]any{
@@ -659,11 +753,19 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/x402/v1/irs-990/search",
-								"parts": []any{
-									"x402",
-									"v1",
-									"irs-990",
-									"search",
+								"segments": []any{
+									map[string]any{
+										"lit": "x402",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "irs-990",
+									},
+									map[string]any{
+										"lit": "search",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -677,6 +779,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"x402",
+									"v1",
+									"irs-990",
+									"search",
 								},
 							},
 							map[string]any{
@@ -713,11 +821,19 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/x402/v1/business-entity/search",
-								"parts": []any{
-									"x402",
-									"v1",
-									"business-entity",
-									"search",
+								"segments": []any{
+									map[string]any{
+										"lit": "x402",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "business-entity",
+									},
+									map[string]any{
+										"lit": "search",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -730,6 +846,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"x402",
+									"v1",
+									"business-entity",
+									"search",
 								},
 							},
 							map[string]any{
@@ -747,11 +869,19 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/x402/v1/whois/lookup",
-								"parts": []any{
-									"x402",
-									"v1",
-									"whois",
-									"lookup",
+								"segments": []any{
+									map[string]any{
+										"lit": "x402",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "whois",
+									},
+									map[string]any{
+										"lit": "lookup",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -761,6 +891,12 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"x402",
+									"v1",
+									"whois",
+									"lookup",
 								},
 							},
 						},
@@ -772,6 +908,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

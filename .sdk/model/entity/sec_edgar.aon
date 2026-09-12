@@ -66,10 +66,16 @@ main: kit: entity: sec_edgar: {
           }
           method: "GET"
           orig: "/v1/sec-edgar/filings"
-          parts: [
-            "v1"
-            "sec-edgar"
-            "filings"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "sec-edgar"
+            }
+            {
+              lit: "filings"
+            }
           ]
           select: {
             "$action": "filing"

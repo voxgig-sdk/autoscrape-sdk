@@ -67,10 +67,16 @@ main: kit: entity: building_permit: {
           }
           method: "GET"
           orig: "/v1/building-permits/search"
-          parts: [
-            "v1"
-            "building-permits"
-            "search"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "building-permits"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             "$action": "search"

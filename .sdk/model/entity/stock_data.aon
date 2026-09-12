@@ -39,10 +39,16 @@ main: kit: entity: stock_data: {
           }
           method: "GET"
           orig: "/v1/stock/chart"
-          parts: [
-            "v1"
-            "stock"
-            "chart"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "stock"
+            }
+            {
+              lit: "chart"
+            }
           ]
           select: {
             exist: [

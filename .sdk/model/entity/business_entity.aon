@@ -46,10 +46,16 @@ main: kit: entity: business_entity: {
           }
           method: "GET"
           orig: "/v1/business-entity/search"
-          parts: [
-            "v1"
-            "business-entity"
-            "search"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "business-entity"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             "$action": "search"

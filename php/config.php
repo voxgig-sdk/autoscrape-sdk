@@ -121,10 +121,16 @@ class AutoscrapeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/building-permits/search',
-                  'parts' => [
-                    'v1',
-                    'building-permits',
-                    'search',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'building-permits',
+                    ],
+                    [
+                      'lit' => 'search',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'search',
@@ -141,6 +147,11 @@ class AutoscrapeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'building-permits',
+                    'search',
                   ],
                 ],
               ],
@@ -192,10 +203,16 @@ class AutoscrapeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/business-entity/search',
-                  'parts' => [
-                    'v1',
-                    'business-entity',
-                    'search',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'business-entity',
+                    ],
+                    [
+                      'lit' => 'search',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'search',
@@ -209,6 +226,11 @@ class AutoscrapeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'business-entity',
+                    'search',
                   ],
                 ],
               ],
@@ -265,10 +287,16 @@ class AutoscrapeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/irs-990/search',
-                  'parts' => [
-                    'v1',
-                    'irs-990',
-                    'search',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'irs-990',
+                    ],
+                    [
+                      'lit' => 'search',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'search',
@@ -283,6 +311,11 @@ class AutoscrapeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'irs-990',
+                    'search',
                   ],
                 ],
               ],
@@ -351,10 +384,16 @@ class AutoscrapeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/sec-edgar/filings',
-                  'parts' => [
-                    'v1',
-                    'sec-edgar',
-                    'filings',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'sec-edgar',
+                    ],
+                    [
+                      'lit' => 'filings',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'filing',
@@ -371,6 +410,11 @@ class AutoscrapeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'sec-edgar',
+                    'filings',
                   ],
                 ],
               ],
@@ -417,10 +461,16 @@ class AutoscrapeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/stock/chart',
-                  'parts' => [
-                    'v1',
-                    'stock',
-                    'chart',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'stock',
+                    ],
+                    [
+                      'lit' => 'chart',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -432,6 +482,11 @@ class AutoscrapeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'stock',
+                    'chart',
                   ],
                 ],
               ],
@@ -464,10 +519,16 @@ class AutoscrapeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/v1/whois/lookup',
-                  'parts' => [
-                    'v1',
-                    'whois',
-                    'lookup',
+                  'segments' => [
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'whois',
+                    ],
+                    [
+                      'lit' => 'lookup',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'lookup',
@@ -478,6 +539,11 @@ class AutoscrapeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'v1',
+                    'whois',
+                    'lookup',
                   ],
                 ],
               ],
@@ -546,11 +612,19 @@ class AutoscrapeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/x402/v1/sec-edgar/filings',
-                  'parts' => [
-                    'x402',
-                    'v1',
-                    'sec-edgar',
-                    'filings',
+                  'segments' => [
+                    [
+                      'lit' => 'x402',
+                    ],
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'sec-edgar',
+                    ],
+                    [
+                      'lit' => 'filings',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -566,6 +640,12 @@ class AutoscrapeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'x402',
+                    'v1',
+                    'sec-edgar',
+                    'filings',
                   ],
                 ],
                 [
@@ -620,11 +700,19 @@ class AutoscrapeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/x402/v1/building-permits/search',
-                  'parts' => [
-                    'x402',
-                    'v1',
-                    'building-permits',
-                    'search',
+                  'segments' => [
+                    [
+                      'lit' => 'x402',
+                    ],
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'building-permits',
+                    ],
+                    [
+                      'lit' => 'search',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -640,6 +728,12 @@ class AutoscrapeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'x402',
+                    'v1',
+                    'building-permits',
+                    'search',
                   ],
                 ],
                 [
@@ -681,11 +775,19 @@ class AutoscrapeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/x402/v1/irs-990/search',
-                  'parts' => [
-                    'x402',
-                    'v1',
-                    'irs-990',
-                    'search',
+                  'segments' => [
+                    [
+                      'lit' => 'x402',
+                    ],
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'irs-990',
+                    ],
+                    [
+                      'lit' => 'search',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -699,6 +801,12 @@ class AutoscrapeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'x402',
+                    'v1',
+                    'irs-990',
+                    'search',
                   ],
                 ],
                 [
@@ -735,11 +843,19 @@ class AutoscrapeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/x402/v1/business-entity/search',
-                  'parts' => [
-                    'x402',
-                    'v1',
-                    'business-entity',
-                    'search',
+                  'segments' => [
+                    [
+                      'lit' => 'x402',
+                    ],
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'business-entity',
+                    ],
+                    [
+                      'lit' => 'search',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -752,6 +868,12 @@ class AutoscrapeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'x402',
+                    'v1',
+                    'business-entity',
+                    'search',
                   ],
                 ],
                 [
@@ -769,11 +891,19 @@ class AutoscrapeConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/x402/v1/whois/lookup',
-                  'parts' => [
-                    'x402',
-                    'v1',
-                    'whois',
-                    'lookup',
+                  'segments' => [
+                    [
+                      'lit' => 'x402',
+                    ],
+                    [
+                      'lit' => 'v1',
+                    ],
+                    [
+                      'lit' => 'whois',
+                    ],
+                    [
+                      'lit' => 'lookup',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -783,6 +913,12 @@ class AutoscrapeConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'x402',
+                    'v1',
+                    'whois',
+                    'lookup',
                   ],
                 ],
               ],

@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -142,10 +153,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/v1/building-permits/search",
-              "parts": [
-                "v1",
-                "building-permits",
-                "search"
+              "segments": [
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "building-permits"
+                },
+                {
+                  "lit": "search"
+                }
               ],
               "select": {
                 "$action": "search",
@@ -162,7 +179,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "v1",
+                "building-permits",
+                "search"
+              ]
             }
           ]
         }
@@ -213,10 +235,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/v1/business-entity/search",
-              "parts": [
-                "v1",
-                "business-entity",
-                "search"
+              "segments": [
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "business-entity"
+                },
+                {
+                  "lit": "search"
+                }
               ],
               "select": {
                 "$action": "search",
@@ -230,7 +258,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "v1",
+                "business-entity",
+                "search"
+              ]
             }
           ]
         }
@@ -286,10 +319,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/v1/irs-990/search",
-              "parts": [
-                "v1",
-                "irs-990",
-                "search"
+              "segments": [
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "irs-990"
+                },
+                {
+                  "lit": "search"
+                }
               ],
               "select": {
                 "$action": "search",
@@ -304,7 +343,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "v1",
+                "irs-990",
+                "search"
+              ]
             }
           ]
         }
@@ -372,10 +416,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/v1/sec-edgar/filings",
-              "parts": [
-                "v1",
-                "sec-edgar",
-                "filings"
+              "segments": [
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "sec-edgar"
+                },
+                {
+                  "lit": "filings"
+                }
               ],
               "select": {
                 "$action": "filing",
@@ -392,7 +442,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "v1",
+                "sec-edgar",
+                "filings"
+              ]
             }
           ]
         }
@@ -438,10 +493,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/v1/stock/chart",
-              "parts": [
-                "v1",
-                "stock",
-                "chart"
+              "segments": [
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "stock"
+                },
+                {
+                  "lit": "chart"
+                }
               ],
               "select": {
                 "exist": [
@@ -453,7 +514,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "v1",
+                "stock",
+                "chart"
+              ]
             }
           ]
         }
@@ -485,10 +551,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/v1/whois/lookup",
-              "parts": [
-                "v1",
-                "whois",
-                "lookup"
+              "segments": [
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "whois"
+                },
+                {
+                  "lit": "lookup"
+                }
               ],
               "select": {
                 "$action": "lookup",
@@ -499,7 +571,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "v1",
+                "whois",
+                "lookup"
+              ]
             }
           ]
         }
@@ -567,11 +644,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/x402/v1/sec-edgar/filings",
-              "parts": [
-                "x402",
-                "v1",
-                "sec-edgar",
-                "filings"
+              "segments": [
+                {
+                  "lit": "x402"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "sec-edgar"
+                },
+                {
+                  "lit": "filings"
+                }
               ],
               "select": {
                 "exist": [
@@ -587,7 +672,13 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "x402",
+                "v1",
+                "sec-edgar",
+                "filings"
+              ]
             },
             {
               "args": {
@@ -641,11 +732,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/x402/v1/building-permits/search",
-              "parts": [
-                "x402",
-                "v1",
-                "building-permits",
-                "search"
+              "segments": [
+                {
+                  "lit": "x402"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "building-permits"
+                },
+                {
+                  "lit": "search"
+                }
               ],
               "select": {
                 "exist": [
@@ -661,7 +760,13 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "x402",
+                "v1",
+                "building-permits",
+                "search"
+              ]
             },
             {
               "args": {
@@ -702,11 +807,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/x402/v1/irs-990/search",
-              "parts": [
-                "x402",
-                "v1",
-                "irs-990",
-                "search"
+              "segments": [
+                {
+                  "lit": "x402"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "irs-990"
+                },
+                {
+                  "lit": "search"
+                }
               ],
               "select": {
                 "exist": [
@@ -720,7 +833,13 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "x402",
+                "v1",
+                "irs-990",
+                "search"
+              ]
             },
             {
               "args": {
@@ -756,11 +875,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/x402/v1/business-entity/search",
-              "parts": [
-                "x402",
-                "v1",
-                "business-entity",
-                "search"
+              "segments": [
+                {
+                  "lit": "x402"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "business-entity"
+                },
+                {
+                  "lit": "search"
+                }
               ],
               "select": {
                 "exist": [
@@ -773,7 +900,13 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "x402",
+                "v1",
+                "business-entity",
+                "search"
+              ]
             },
             {
               "args": {
@@ -790,11 +923,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/x402/v1/whois/lookup",
-              "parts": [
-                "x402",
-                "v1",
-                "whois",
-                "lookup"
+              "segments": [
+                {
+                  "lit": "x402"
+                },
+                {
+                  "lit": "v1"
+                },
+                {
+                  "lit": "whois"
+                },
+                {
+                  "lit": "lookup"
+                }
               ],
               "select": {
                 "exist": [
@@ -804,7 +945,13 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "x402",
+                "v1",
+                "whois",
+                "lookup"
+              ]
             }
           ]
         }
@@ -820,6 +967,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 
