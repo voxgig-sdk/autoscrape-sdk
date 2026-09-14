@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { AutoscrapeSDK } from '@voxgig-sdk/autoscrape'
+import { AutoscrapeSDK } from '@voxgig-sdk/autoscrape-sdk'
 
 const client = new AutoscrapeSDK()
 ```
@@ -556,7 +556,7 @@ autoscrape/
 Import the SDK from the package root:
 
 ```ts
-import { AutoscrapeSDK } from '@voxgig-sdk/autoscrape'
+import { AutoscrapeSDK } from '@voxgig-sdk/autoscrape-sdk'
 ```
 
 ### Entity state

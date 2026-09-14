@@ -105,7 +105,7 @@ local result, err = client:SecEdgar():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/autoscrape` | publish pending — [install from git tag](https://github.com/voxgig-sdk/autoscrape-sdk/releases) |
+| TypeScript | `@voxgig-sdk/autoscrape-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/autoscrape-sdk/releases) |
 | Python | `voxgig-sdk-autoscrape` | publish pending — [install from git tag](https://github.com/voxgig-sdk/autoscrape-sdk/releases) |
 | PHP | `voxgig-sdk/autoscrape` | publish pending — [install from git tag](https://github.com/voxgig-sdk/autoscrape-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/autoscrape-sdk/go` | `go get github.com/voxgig-sdk/autoscrape-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:SecEdgar():load()
 ### TypeScript
 
 ```ts
-import { AutoscrapeSDK } from '@voxgig-sdk/autoscrape'
+import { AutoscrapeSDK } from '@voxgig-sdk/autoscrape-sdk'
 
 const client = new AutoscrapeSDK()
 
