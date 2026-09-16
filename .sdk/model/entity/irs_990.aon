@@ -50,6 +50,12 @@ main: kit: entity: irs_990: {
               }
             ]
           }
+          contract: {
+            id: "GET /v1/irs-990/search"
+            json: "{\"operationId\":\"searchIRS990\",\"parameters\":[{\"description\":\"Organization name\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"EIN number lookup\",\"in\":\"query\",\"name\":\"ein\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Two-letter state code\",\"in\":\"query\",\"name\":\"state\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Include full filing details\",\"in\":\"query\",\"name\":\"fetchDetails\",\"schema\":{\"type\":\"boolean\"}},{\"description\":\"Max results\",\"in\":\"query\",\"name\":\"maxResults\",\"schema\":{\"default\":25,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"Nonprofit results\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v1/irs-990/search"
           segments: [

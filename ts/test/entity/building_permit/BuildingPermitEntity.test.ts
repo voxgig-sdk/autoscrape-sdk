@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { AutoscrapeSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('BuildingPermitEntity', async () => {
 
     const live = 'TRUE' === process.env.AUTOSCRAPE_TEST_LIVE
     for (const op of ['load']) {
-      if (maybeSkipControl(t, 'entityOp', 'building_permit.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'building_permit.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set AUTOSCRAPE_TEST_BUILDING_PERMIT_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[],"name":"building_permit","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{"query":[{"active":true,"example":"austin","kind":"query","name":"city","orig":"city","reqd":false,"type":"`$STRING`","index$":0},{"active":true,"kind":"query","name":"date_from","orig":"date_from","reqd":false,"type":"`$STRING`","index$":1},{"active":true,"kind":"query","name":"date_to","orig":"date_to","reqd":false,"type":"`$STRING`","index$":2},{"active":true,"kind":"query","name":"keyword","orig":"keyword","reqd":false,"type":"`$STRING`","index$":3},{"active":true,"example":25,"kind":"query","name":"max_result","orig":"max_result","reqd":false,"type":"`$INTEGER`","index$":4},{"active":true,"kind":"query","name":"permit_type","orig":"permit_type","reqd":false,"type":"`$STRING`","index$":5},{"active":true,"kind":"query","name":"query","orig":"query","reqd":false,"type":"`$STRING`","index$":6}]},"contract":{"id":"GET /v1/building-permits/search","json":"{\"operationId\":\"searchBuildingPermits\",\"parameters\":[{\"description\":\"City key such as austin, chicago, la, sf, seattle, denver, boston, portland, dallas, houston, or phoenix. Defaults to austin when omitted for agent discovery.\",\"in\":\"query\",\"name\":\"city\",\"schema\":{\"default\":\"austin\",\"type\":\"string\"}},{\"description\":\"Full-text search across public permit fields; query is accepted as an alias\",\"in\":\"query\",\"name\":\"keyword\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Alias for keyword for agents that send a generic query parameter\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Permit type filter\",\"in\":\"query\",\"name\":\"permitType\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Issue/application date lower bound YYYY-MM-DD\",\"in\":\"query\",\"name\":\"dateFrom\",\"schema\":{\"format\":\"date\",\"type\":\"string\"}},{\"description\":\"Issue/application date upper bound YYYY-MM-DD\",\"in\":\"query\",\"name\":\"dateTo\",\"schema\":{\"format\":\"date\",\"type\":\"string\"}},{\"description\":\"Max results\",\"in\":\"query\",\"name\":\"maxResults\",\"schema\":{\"default\":25,\"maximum\":100,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"Permit lead records\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/v1/building-permits/search","segments":[{"lit":"v1"},{"lit":"building-permits"},{"lit":"search"}],"select":{"$action":"search","exist":["city","date_from","date_to","keyword","max_result","permit_type","query"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"building_permit","name__orig":"building_permit","Name":"BuildingPermit","name_":"building_permit","name-":"building-permit","NAME":"BUILDING_PERMIT","index$":0}, {"active":true,"entity":"building_permit","key$":"BasicBuildingPermitFlow","kind":"basic","name":"BasicBuildingPermitFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"building_permit_ref01","srcdatavar":"building_permit_ref01_data","suffix":"_dt0"},"match":{},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-building_permit_ref01"}}],"index$":0}]}, 'BuildingPermit')
     }
     const client = setup.client
     const struct = setup.struct
@@ -109,13 +108,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['AUTOSCRAPE_TEST_BUILDING_PERMIT_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'AUTOSCRAPE_TEST_BUILDING_PERMIT_ENTID': idmap,
     'AUTOSCRAPE_TEST_LIVE': 'FALSE',
@@ -126,7 +118,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.AUTOSCRAPE_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['AUTOSCRAPE_TEST_BUILDING_PERMIT_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new AutoscrapeSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -138,7 +136,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -151,7 +150,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.AUTOSCRAPE_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

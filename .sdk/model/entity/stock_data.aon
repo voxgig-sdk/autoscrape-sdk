@@ -37,6 +37,12 @@ main: kit: entity: stock_data: {
               }
             ]
           }
+          contract: {
+            id: "GET /v1/stock/chart"
+            json: "{\"operationId\":\"getStockChart\",\"parameters\":[{\"description\":\"Stock ticker symbol\",\"in\":\"query\",\"name\":\"symbol\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Time range\",\"in\":\"query\",\"name\":\"range\",\"schema\":{\"default\":\"1mo\",\"enum\":[\"1d\",\"5d\",\"1mo\",\"3mo\",\"6mo\",\"1y\",\"5y\",\"max\"],\"type\":\"string\"}},{\"description\":\"Data interval\",\"in\":\"query\",\"name\":\"interval\",\"schema\":{\"default\":\"1d\",\"enum\":[\"1m\",\"5m\",\"15m\",\"1h\",\"1d\",\"1wk\",\"1mo\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"OHLCV price data\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v1/stock/chart"
           segments: [

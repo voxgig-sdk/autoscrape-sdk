@@ -1,12 +1,18 @@
 # Autoscrape SDK feature factory
 
 from autoscrape_sdk.feature.base_feature import AutoscrapeBaseFeature
+from autoscrape_sdk.feature.ratelimit_feature import AutoscrapeRatelimitFeature
+from autoscrape_sdk.feature.retry_feature import AutoscrapeRetryFeature
 from autoscrape_sdk.feature.test_feature import AutoscrapeTestFeature
+from autoscrape_sdk.feature.timeout_feature import AutoscrapeTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: AutoscrapeBaseFeature(),
+    "ratelimit": lambda: AutoscrapeRatelimitFeature(),
+    "retry": lambda: AutoscrapeRetryFeature(),
     "test": lambda: AutoscrapeTestFeature(),
+    "timeout": lambda: AutoscrapeTimeoutFeature(),
 }
 
 

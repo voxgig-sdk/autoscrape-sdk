@@ -65,6 +65,12 @@ main: kit: entity: building_permit: {
               }
             ]
           }
+          contract: {
+            id: "GET /v1/building-permits/search"
+            json: "{\"operationId\":\"searchBuildingPermits\",\"parameters\":[{\"description\":\"City key such as austin, chicago, la, sf, seattle, denver, boston, portland, dallas, houston, or phoenix. Defaults to austin when omitted for agent discovery.\",\"in\":\"query\",\"name\":\"city\",\"schema\":{\"default\":\"austin\",\"type\":\"string\"}},{\"description\":\"Full-text search across public permit fields; query is accepted as an alias\",\"in\":\"query\",\"name\":\"keyword\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Alias for keyword for agents that send a generic query parameter\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Permit type filter\",\"in\":\"query\",\"name\":\"permitType\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Issue/application date lower bound YYYY-MM-DD\",\"in\":\"query\",\"name\":\"dateFrom\",\"schema\":{\"format\":\"date\",\"type\":\"string\"}},{\"description\":\"Issue/application date upper bound YYYY-MM-DD\",\"in\":\"query\",\"name\":\"dateTo\",\"schema\":{\"format\":\"date\",\"type\":\"string\"}},{\"description\":\"Max results\",\"in\":\"query\",\"name\":\"maxResults\",\"schema\":{\"default\":25,\"maximum\":100,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"Permit lead records\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v1/building-permits/search"
           segments: [

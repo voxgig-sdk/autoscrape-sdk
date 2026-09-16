@@ -16,5 +16,88 @@
     "sec_edgar": {
       "sec_edgar_ref01": {}
     }
+  },
+  "requests": {
+    "GET /v1/sec-edgar/filings": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "searchSECEdgarFilings",
+        "parameters": [
+          {
+            "description": "Company name search",
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated stock tickers",
+            "in": "query",
+            "name": "tickers",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Comma-separated CIK numbers",
+            "in": "query",
+            "name": "ciks",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by form type (e.g. 10-K,10-Q)",
+            "in": "query",
+            "name": "formTypes",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Start date YYYY-MM-DD",
+            "in": "query",
+            "name": "dateFrom",
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "description": "End date YYYY-MM-DD",
+            "in": "query",
+            "name": "dateTo",
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Max results",
+            "in": "query",
+            "name": "maxFilings",
+            "schema": {
+              "default": 100,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Filing results"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

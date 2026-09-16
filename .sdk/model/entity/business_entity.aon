@@ -44,6 +44,12 @@ main: kit: entity: business_entity: {
               }
             ]
           }
+          contract: {
+            id: "GET /v1/business-entity/search"
+            json: "{\"operationId\":\"searchBusinessEntities\",\"parameters\":[{\"description\":\"Business name to search. Defaults to Apple Inc with a warning when omitted for marketplace/agent discovery.\",\"in\":\"query\",\"name\":\"query\",\"schema\":{\"default\":\"Apple Inc\",\"type\":\"string\"}},{\"description\":\"Comma-separated state codes (default: NY with warning). Also accepts 'state' param.\",\"in\":\"query\",\"name\":\"states\",\"schema\":{\"type\":\"string\"}},{\"description\":\"Maximum records to return across the response\",\"in\":\"query\",\"name\":\"maxResults\",\"schema\":{\"default\":25,\"type\":\"integer\"}},{\"description\":\"Include full entity details\",\"in\":\"query\",\"name\":\"fetchDetails\",\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"Search results\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/v1/business-entity/search"
           segments: [
