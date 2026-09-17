@@ -127,27 +127,27 @@ class Config {
 
     entity: {
       
-      building_permit: {
-      },
-
-      business_entity: {
-      },
-
-      irs_990: {
-      },
-
-      sec_edgar: {
-      },
-
-      stock_data: {
-      },
-
-      whoi: {
-      },
-
-      x402_paid: {
-      },
-
+        building_permit: {
+        },
+  
+        business_entity: {
+        },
+  
+        irs_990: {
+        },
+  
+        sec_edgar: {
+        },
+  
+        stock_data: {
+        },
+  
+        whoi: {
+        },
+  
+        x402_paid: {
+        },
+  
     }
   }
 
