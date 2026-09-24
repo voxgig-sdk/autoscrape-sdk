@@ -102,54 +102,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "austin",
-											"kind": "query",
-											"name": "city",
-											"orig": "city",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "date_from",
-											"orig": "date_from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "date_to",
-											"orig": "date_to",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "keyword",
-											"orig": "keyword",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 25,
-											"kind": "query",
-											"name": "max_result",
-											"orig": "max_result",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "permit_type",
-											"orig": "permit_type",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/building-permits/search",
@@ -164,6 +116,64 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"v1",
+									"building-permits",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "city",
+											"orig": "city",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "austin",
+										},
+										map[string]any{
+											"name": "date_from",
+											"orig": "date_from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "date_to",
+											"orig": "date_to",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "keyword",
+											"orig": "keyword",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "max_result",
+											"orig": "max_result",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 25,
+										},
+										map[string]any{
+											"name": "permit_type",
+											"orig": "permit_type",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "search",
 									"exist": []any{
@@ -175,15 +185,6 @@ func MakeConfig() map[string]any {
 										"permit_type",
 										"query",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"v1",
-									"building-permits",
-									"search",
 								},
 							},
 						},
@@ -202,36 +203,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "fetch_detail",
-											"orig": "fetch_detail",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"example": 25,
-											"kind": "query",
-											"name": "max_result",
-											"orig": "max_result",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": "Apple Inc",
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "state",
-											"orig": "state",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/business-entity/search",
@@ -246,6 +217,46 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"v1",
+									"business-entity",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "fetch_detail",
+											"orig": "fetch_detail",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "max_result",
+											"orig": "max_result",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 25,
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "Apple Inc",
+										},
+										map[string]any{
+											"name": "state",
+											"orig": "state",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "search",
 									"exist": []any{
@@ -254,15 +265,6 @@ func MakeConfig() map[string]any {
 										"query",
 										"state",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"v1",
-									"business-entity",
-									"search",
 								},
 							},
 						},
@@ -281,41 +283,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "ein",
-											"orig": "ein",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "fetch_detail",
-											"orig": "fetch_detail",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"example": 25,
-											"kind": "query",
-											"name": "max_result",
-											"orig": "max_result",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "state",
-											"orig": "state",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/irs-990/search",
@@ -330,6 +297,51 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"v1",
+									"irs-990",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "ein",
+											"orig": "ein",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "fetch_detail",
+											"orig": "fetch_detail",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "max_result",
+											"orig": "max_result",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 25,
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "state",
+											"orig": "state",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "search",
 									"exist": []any{
@@ -339,15 +351,6 @@ func MakeConfig() map[string]any {
 										"query",
 										"state",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"v1",
-									"irs-990",
-									"search",
 								},
 							},
 						},
@@ -366,53 +369,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "cik",
-											"orig": "cik",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "date_from",
-											"orig": "date_from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "date_to",
-											"orig": "date_to",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "form_type",
-											"orig": "form_type",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 100,
-											"kind": "query",
-											"name": "max_filing",
-											"orig": "max_filing",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "ticker",
-											"orig": "ticker",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/sec-edgar/filings",
@@ -427,6 +383,63 @@ func MakeConfig() map[string]any {
 										"lit": "filings",
 									},
 								},
+								"parts": []any{
+									"v1",
+									"sec-edgar",
+									"filings",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "cik",
+											"orig": "cik",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "date_from",
+											"orig": "date_from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "date_to",
+											"orig": "date_to",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "form_type",
+											"orig": "form_type",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "max_filing",
+											"orig": "max_filing",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 100,
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "ticker",
+											"orig": "ticker",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "filing",
 									"exist": []any{
@@ -438,15 +451,6 @@ func MakeConfig() map[string]any {
 										"query",
 										"ticker",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"v1",
-									"sec-edgar",
-									"filings",
 								},
 							},
 						},
@@ -465,31 +469,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "1d",
-											"kind": "query",
-											"name": "interval",
-											"orig": "interval",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "1mo",
-											"kind": "query",
-											"name": "range",
-											"orig": "range",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "symbol",
-											"orig": "symbol",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/stock/chart",
@@ -504,21 +483,47 @@ func MakeConfig() map[string]any {
 										"lit": "chart",
 									},
 								},
+								"parts": []any{
+									"v1",
+									"stock",
+									"chart",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "interval",
+											"orig": "interval",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "1d",
+										},
+										map[string]any{
+											"name": "range",
+											"orig": "range",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "1mo",
+										},
+										map[string]any{
+											"name": "symbol",
+											"orig": "symbol",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"interval",
 										"range",
 										"symbol",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"v1",
-									"stock",
-									"chart",
 								},
 							},
 						},
@@ -537,17 +542,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "apple.com",
-											"kind": "query",
-											"name": "domain",
-											"orig": "domain",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/whois/lookup",
@@ -562,20 +556,32 @@ func MakeConfig() map[string]any {
 										"lit": "lookup",
 									},
 								},
+								"parts": []any{
+									"v1",
+									"whois",
+									"lookup",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "domain",
+											"orig": "domain",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "apple.com",
+										},
+									},
+								},
 								"select": map[string]any{
 									"$action": "lookup",
 									"exist": []any{
 										"domain",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"v1",
-									"whois",
-									"lookup",
 								},
 							},
 						},
@@ -594,53 +600,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "cik",
-											"orig": "cik",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "date_from",
-											"orig": "date_from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "date_to",
-											"orig": "date_to",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "form_type",
-											"orig": "form_type",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 100,
-											"kind": "query",
-											"name": "max_filing",
-											"orig": "max_filing",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "ticker",
-											"orig": "ticker",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/x402/v1/sec-edgar/filings",
@@ -658,6 +617,64 @@ func MakeConfig() map[string]any {
 										"lit": "filings",
 									},
 								},
+								"parts": []any{
+									"x402",
+									"v1",
+									"sec-edgar",
+									"filings",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "cik",
+											"orig": "cik",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "date_from",
+											"orig": "date_from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "date_to",
+											"orig": "date_to",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "form_type",
+											"orig": "form_type",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "max_filing",
+											"orig": "max_filing",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 100,
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "ticker",
+											"orig": "ticker",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"cik",
@@ -669,66 +686,8 @@ func MakeConfig() map[string]any {
 										"ticker",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"x402",
-									"v1",
-									"sec-edgar",
-									"filings",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "austin",
-											"kind": "query",
-											"name": "city",
-											"orig": "city",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "date_from",
-											"orig": "date_from",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "date_to",
-											"orig": "date_to",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "keyword",
-											"orig": "keyword",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 25,
-											"kind": "query",
-											"name": "max_result",
-											"orig": "max_result",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "permit_type",
-											"orig": "permit_type",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/x402/v1/building-permits/search",
@@ -746,6 +705,65 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"x402",
+									"v1",
+									"building-permits",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "city",
+											"orig": "city",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "austin",
+										},
+										map[string]any{
+											"name": "date_from",
+											"orig": "date_from",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "date_to",
+											"orig": "date_to",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "keyword",
+											"orig": "keyword",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "max_result",
+											"orig": "max_result",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 25,
+										},
+										map[string]any{
+											"name": "permit_type",
+											"orig": "permit_type",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"city",
@@ -757,53 +775,8 @@ func MakeConfig() map[string]any {
 										"query",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"x402",
-									"v1",
-									"building-permits",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "ein",
-											"orig": "ein",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "fetch_detail",
-											"orig": "fetch_detail",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"example": 25,
-											"kind": "query",
-											"name": "max_result",
-											"orig": "max_result",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "state",
-											"orig": "state",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/x402/v1/irs-990/search",
@@ -821,6 +794,52 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"x402",
+									"v1",
+									"irs-990",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "ein",
+											"orig": "ein",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "fetch_detail",
+											"orig": "fetch_detail",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "max_result",
+											"orig": "max_result",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 25,
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "state",
+											"orig": "state",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"ein",
@@ -830,48 +849,8 @@ func MakeConfig() map[string]any {
 										"state",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"x402",
-									"v1",
-									"irs-990",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "fetch_detail",
-											"orig": "fetch_detail",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"example": 25,
-											"kind": "query",
-											"name": "max_result",
-											"orig": "max_result",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": "Apple Inc",
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "state",
-											"orig": "state",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/x402/v1/business-entity/search",
@@ -889,6 +868,47 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
+								"parts": []any{
+									"x402",
+									"v1",
+									"business-entity",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "fetch_detail",
+											"orig": "fetch_detail",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "max_result",
+											"orig": "max_result",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 25,
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "Apple Inc",
+										},
+										map[string]any{
+											"name": "state",
+											"orig": "state",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"fetch_detail",
@@ -897,29 +917,8 @@ func MakeConfig() map[string]any {
 										"state",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"x402",
-									"v1",
-									"business-entity",
-									"search",
-								},
 							},
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "apple.com",
-											"kind": "query",
-											"name": "domain",
-											"orig": "domain",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/x402/v1/whois/lookup",
@@ -937,20 +936,32 @@ func MakeConfig() map[string]any {
 										"lit": "lookup",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"domain",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"x402",
 									"v1",
 									"whois",
 									"lookup",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "domain",
+											"orig": "domain",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "apple.com",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"domain",
+									},
 								},
 							},
 						},

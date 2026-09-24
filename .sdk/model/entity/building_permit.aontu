@@ -1,0 +1,112 @@
+# Entity: building_permit
+
+main: kit: entity: building_permit: {
+
+  alias: field: {}
+
+  name: "building_permit"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /v1/building-permits/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "austin"
+                k: "query"
+                n: "city"
+                or: "city"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "date_from"
+                or: "date_from"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "date_to"
+                or: "date_to"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "keyword"
+                or: "keyword"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 25
+                k: "query"
+                n: "max_result"
+                or: "max_result"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "permit_type"
+                or: "permit_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v1/building-permits/search"
+          q: {
+            "$action": "search"
+            exist: [
+              "city"
+              "date_from"
+              "date_to"
+              "keyword"
+              "max_result"
+              "permit_type"
+              "query"
+            ]
+          }
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "building-permits"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

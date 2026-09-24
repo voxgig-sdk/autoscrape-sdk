@@ -1,0 +1,395 @@
+# Entity: x402_paid
+
+main: kit: entity: x402_paid: {
+
+  alias: field: {}
+
+  name: "x402_paid"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /x402/v1/sec-edgar/filings"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "cik"
+                or: "cik"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "date_from"
+                or: "date_from"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "date_to"
+                or: "date_to"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "form_type"
+                or: "form_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 100
+                k: "query"
+                n: "max_filing"
+                or: "max_filing"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "ticker"
+                or: "ticker"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/x402/v1/sec-edgar/filings"
+          q: {
+            exist: [
+              "cik"
+              "date_from"
+              "date_to"
+              "form_type"
+              "max_filing"
+              "query"
+              "ticker"
+            ]
+          }
+          s: [
+            {
+              lit: "x402"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "sec-edgar"
+            }
+            {
+              lit: "filings"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /x402/v1/building-permits/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "austin"
+                k: "query"
+                n: "city"
+                or: "city"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "date_from"
+                or: "date_from"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "date_to"
+                or: "date_to"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "keyword"
+                or: "keyword"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 25
+                k: "query"
+                n: "max_result"
+                or: "max_result"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "permit_type"
+                or: "permit_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/x402/v1/building-permits/search"
+          q: {
+            exist: [
+              "city"
+              "date_from"
+              "date_to"
+              "keyword"
+              "max_result"
+              "permit_type"
+              "query"
+            ]
+          }
+          s: [
+            {
+              lit: "x402"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "building-permits"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /x402/v1/irs-990/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "ein"
+                or: "ein"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "fetch_detail"
+                or: "fetch_detail"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: 25
+                k: "query"
+                n: "max_result"
+                or: "max_result"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "state"
+                or: "state"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/x402/v1/irs-990/search"
+          q: {
+            exist: [
+              "ein"
+              "fetch_detail"
+              "max_result"
+              "query"
+              "state"
+            ]
+          }
+          s: [
+            {
+              lit: "x402"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "irs-990"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /x402/v1/business-entity/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "fetch_detail"
+                or: "fetch_detail"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: 25
+                k: "query"
+                n: "max_result"
+                or: "max_result"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "Apple Inc"
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "state"
+                or: "state"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/x402/v1/business-entity/search"
+          q: {
+            exist: [
+              "fetch_detail"
+              "max_result"
+              "query"
+              "state"
+            ]
+          }
+          s: [
+            {
+              lit: "x402"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "business-entity"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /x402/v1/whois/lookup"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "apple.com"
+                k: "query"
+                n: "domain"
+                or: "domain"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/x402/v1/whois/lookup"
+          q: {
+            exist: [
+              "domain"
+            ]
+          }
+          s: [
+            {
+              lit: "x402"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "whois"
+            }
+            {
+              lit: "lookup"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

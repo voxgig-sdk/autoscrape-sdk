@@ -1,0 +1,28 @@
+# BasicSecEdgarFlow
+
+main: kit: flow: BasicSecEdgarFlow:
+{
+  entity: "sec_edgar",
+  kind: "basic",
+  name: "BasicSecEdgarFlow",
+  step: [
+    {
+      i: {
+        ref: "sec_edgar_ref01",
+        srcdatavar: "sec_edgar_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-sec_edgar_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSecEdgarFlow"
+}

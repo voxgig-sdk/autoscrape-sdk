@@ -1,0 +1,88 @@
+# Entity: business_entity
+
+main: kit: entity: business_entity: {
+
+  alias: field: {}
+
+  name: "business_entity"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /v1/business-entity/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "fetch_detail"
+                or: "fetch_detail"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: 25
+                k: "query"
+                n: "max_result"
+                or: "max_result"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "Apple Inc"
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "state"
+                or: "state"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v1/business-entity/search"
+          q: {
+            "$action": "search"
+            exist: [
+              "fetch_detail"
+              "max_result"
+              "query"
+              "state"
+            ]
+          }
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "business-entity"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

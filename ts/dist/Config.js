@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -125,54 +118,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": "austin",
-                                        "kind": "query",
-                                        "name": "city",
-                                        "orig": "city",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "date_from",
-                                        "orig": "date_from",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "date_to",
-                                        "orig": "date_to",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "keyword",
-                                        "orig": "keyword",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 25,
-                                        "kind": "query",
-                                        "name": "max_result",
-                                        "orig": "max_result",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "permit_type",
-                                        "orig": "permit_type",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "query",
-                                        "orig": "query",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/v1/building-permits/search",
@@ -187,6 +132,64 @@ class Config {
                                     "lit": "search"
                                 }
                             ],
+                            "parts": [
+                                "v1",
+                                "building-permits",
+                                "search"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "city",
+                                        "orig": "city",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "austin"
+                                    },
+                                    {
+                                        "name": "date_from",
+                                        "orig": "date_from",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "date_to",
+                                        "orig": "date_to",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "keyword",
+                                        "orig": "keyword",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "max_result",
+                                        "orig": "max_result",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 25
+                                    },
+                                    {
+                                        "name": "permit_type",
+                                        "orig": "permit_type",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "query",
+                                        "orig": "query",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "search",
                                 "exist": [
@@ -198,16 +201,7 @@ class Config {
                                     "permit_type",
                                     "query"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "v1",
-                                "building-permits",
-                                "search"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -225,36 +219,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "fetch_detail",
-                                        "orig": "fetch_detail",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "example": 25,
-                                        "kind": "query",
-                                        "name": "max_result",
-                                        "orig": "max_result",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "example": "Apple Inc",
-                                        "kind": "query",
-                                        "name": "query",
-                                        "orig": "query",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "state",
-                                        "orig": "state",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/v1/business-entity/search",
@@ -269,6 +233,46 @@ class Config {
                                     "lit": "search"
                                 }
                             ],
+                            "parts": [
+                                "v1",
+                                "business-entity",
+                                "search"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "fetch_detail",
+                                        "orig": "fetch_detail",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "max_result",
+                                        "orig": "max_result",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 25
+                                    },
+                                    {
+                                        "name": "query",
+                                        "orig": "query",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "Apple Inc"
+                                    },
+                                    {
+                                        "name": "state",
+                                        "orig": "state",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "search",
                                 "exist": [
@@ -277,16 +281,7 @@ class Config {
                                     "query",
                                     "state"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "v1",
-                                "business-entity",
-                                "search"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -304,41 +299,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "ein",
-                                        "orig": "ein",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "fetch_detail",
-                                        "orig": "fetch_detail",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "example": 25,
-                                        "kind": "query",
-                                        "name": "max_result",
-                                        "orig": "max_result",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "query",
-                                        "orig": "query",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "state",
-                                        "orig": "state",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/v1/irs-990/search",
@@ -353,6 +313,51 @@ class Config {
                                     "lit": "search"
                                 }
                             ],
+                            "parts": [
+                                "v1",
+                                "irs-990",
+                                "search"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "ein",
+                                        "orig": "ein",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "fetch_detail",
+                                        "orig": "fetch_detail",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "max_result",
+                                        "orig": "max_result",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 25
+                                    },
+                                    {
+                                        "name": "query",
+                                        "orig": "query",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "state",
+                                        "orig": "state",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "search",
                                 "exist": [
@@ -362,16 +367,7 @@ class Config {
                                     "query",
                                     "state"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "v1",
-                                "irs-990",
-                                "search"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -389,53 +385,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "cik",
-                                        "orig": "cik",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "date_from",
-                                        "orig": "date_from",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "date_to",
-                                        "orig": "date_to",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "form_type",
-                                        "orig": "form_type",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 100,
-                                        "kind": "query",
-                                        "name": "max_filing",
-                                        "orig": "max_filing",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "query",
-                                        "orig": "query",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "ticker",
-                                        "orig": "ticker",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/v1/sec-edgar/filings",
@@ -450,6 +399,63 @@ class Config {
                                     "lit": "filings"
                                 }
                             ],
+                            "parts": [
+                                "v1",
+                                "sec-edgar",
+                                "filings"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "cik",
+                                        "orig": "cik",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "date_from",
+                                        "orig": "date_from",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "date_to",
+                                        "orig": "date_to",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "form_type",
+                                        "orig": "form_type",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "max_filing",
+                                        "orig": "max_filing",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 100
+                                    },
+                                    {
+                                        "name": "query",
+                                        "orig": "query",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "ticker",
+                                        "orig": "ticker",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "filing",
                                 "exist": [
@@ -461,16 +467,7 @@ class Config {
                                     "query",
                                     "ticker"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "v1",
-                                "sec-edgar",
-                                "filings"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -488,31 +485,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": "1d",
-                                        "kind": "query",
-                                        "name": "interval",
-                                        "orig": "interval",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "1mo",
-                                        "kind": "query",
-                                        "name": "range",
-                                        "orig": "range",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "symbol",
-                                        "orig": "symbol",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/v1/stock/chart",
@@ -527,22 +499,48 @@ class Config {
                                     "lit": "chart"
                                 }
                             ],
+                            "parts": [
+                                "v1",
+                                "stock",
+                                "chart"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "interval",
+                                        "orig": "interval",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "1d"
+                                    },
+                                    {
+                                        "name": "range",
+                                        "orig": "range",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "1mo"
+                                    },
+                                    {
+                                        "name": "symbol",
+                                        "orig": "symbol",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "interval",
                                     "range",
                                     "symbol"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "v1",
-                                "stock",
-                                "chart"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -560,17 +558,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": "apple.com",
-                                        "kind": "query",
-                                        "name": "domain",
-                                        "orig": "domain",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/v1/whois/lookup",
@@ -585,21 +572,33 @@ class Config {
                                     "lit": "lookup"
                                 }
                             ],
+                            "parts": [
+                                "v1",
+                                "whois",
+                                "lookup"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "domain",
+                                        "orig": "domain",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "apple.com"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "$action": "lookup",
                                 "exist": [
                                     "domain"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "v1",
-                                "whois",
-                                "lookup"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -617,53 +616,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "cik",
-                                        "orig": "cik",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "date_from",
-                                        "orig": "date_from",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "date_to",
-                                        "orig": "date_to",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "form_type",
-                                        "orig": "form_type",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 100,
-                                        "kind": "query",
-                                        "name": "max_filing",
-                                        "orig": "max_filing",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "query",
-                                        "orig": "query",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "ticker",
-                                        "orig": "ticker",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/x402/v1/sec-edgar/filings",
@@ -681,6 +633,64 @@ class Config {
                                     "lit": "filings"
                                 }
                             ],
+                            "parts": [
+                                "x402",
+                                "v1",
+                                "sec-edgar",
+                                "filings"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "cik",
+                                        "orig": "cik",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "date_from",
+                                        "orig": "date_from",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "date_to",
+                                        "orig": "date_to",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "form_type",
+                                        "orig": "form_type",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "max_filing",
+                                        "orig": "max_filing",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 100
+                                    },
+                                    {
+                                        "name": "query",
+                                        "orig": "query",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "ticker",
+                                        "orig": "ticker",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "cik",
@@ -691,67 +701,9 @@ class Config {
                                     "query",
                                     "ticker"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "x402",
-                                "v1",
-                                "sec-edgar",
-                                "filings"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": "austin",
-                                        "kind": "query",
-                                        "name": "city",
-                                        "orig": "city",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "date_from",
-                                        "orig": "date_from",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "date_to",
-                                        "orig": "date_to",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "keyword",
-                                        "orig": "keyword",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 25,
-                                        "kind": "query",
-                                        "name": "max_result",
-                                        "orig": "max_result",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "permit_type",
-                                        "orig": "permit_type",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "query",
-                                        "orig": "query",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/x402/v1/building-permits/search",
@@ -769,6 +721,65 @@ class Config {
                                     "lit": "search"
                                 }
                             ],
+                            "parts": [
+                                "x402",
+                                "v1",
+                                "building-permits",
+                                "search"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "city",
+                                        "orig": "city",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "austin"
+                                    },
+                                    {
+                                        "name": "date_from",
+                                        "orig": "date_from",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "date_to",
+                                        "orig": "date_to",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "keyword",
+                                        "orig": "keyword",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "max_result",
+                                        "orig": "max_result",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 25
+                                    },
+                                    {
+                                        "name": "permit_type",
+                                        "orig": "permit_type",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "query",
+                                        "orig": "query",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "city",
@@ -779,54 +790,9 @@ class Config {
                                     "permit_type",
                                     "query"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "x402",
-                                "v1",
-                                "building-permits",
-                                "search"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "ein",
-                                        "orig": "ein",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "fetch_detail",
-                                        "orig": "fetch_detail",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "example": 25,
-                                        "kind": "query",
-                                        "name": "max_result",
-                                        "orig": "max_result",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "query",
-                                        "orig": "query",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "state",
-                                        "orig": "state",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/x402/v1/irs-990/search",
@@ -844,6 +810,52 @@ class Config {
                                     "lit": "search"
                                 }
                             ],
+                            "parts": [
+                                "x402",
+                                "v1",
+                                "irs-990",
+                                "search"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "ein",
+                                        "orig": "ein",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "fetch_detail",
+                                        "orig": "fetch_detail",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "max_result",
+                                        "orig": "max_result",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 25
+                                    },
+                                    {
+                                        "name": "query",
+                                        "orig": "query",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "state",
+                                        "orig": "state",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "ein",
@@ -852,49 +864,9 @@ class Config {
                                     "query",
                                     "state"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "x402",
-                                "v1",
-                                "irs-990",
-                                "search"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "fetch_detail",
-                                        "orig": "fetch_detail",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "example": 25,
-                                        "kind": "query",
-                                        "name": "max_result",
-                                        "orig": "max_result",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "example": "Apple Inc",
-                                        "kind": "query",
-                                        "name": "query",
-                                        "orig": "query",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "state",
-                                        "orig": "state",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/x402/v1/business-entity/search",
@@ -912,6 +884,47 @@ class Config {
                                     "lit": "search"
                                 }
                             ],
+                            "parts": [
+                                "x402",
+                                "v1",
+                                "business-entity",
+                                "search"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "fetch_detail",
+                                        "orig": "fetch_detail",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "max_result",
+                                        "orig": "max_result",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 25
+                                    },
+                                    {
+                                        "name": "query",
+                                        "orig": "query",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "Apple Inc"
+                                    },
+                                    {
+                                        "name": "state",
+                                        "orig": "state",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "fetch_detail",
@@ -919,30 +932,9 @@ class Config {
                                     "query",
                                     "state"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "x402",
-                                "v1",
-                                "business-entity",
-                                "search"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": "apple.com",
-                                        "kind": "query",
-                                        "name": "domain",
-                                        "orig": "domain",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/x402/v1/whois/lookup",
@@ -960,21 +952,33 @@ class Config {
                                     "lit": "lookup"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "domain"
-                                ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "x402",
                                 "v1",
                                 "whois",
                                 "lookup"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "domain",
+                                        "orig": "domain",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "apple.com"
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "domain"
+                                ]
+                            }
                         }
                     ]
                 }

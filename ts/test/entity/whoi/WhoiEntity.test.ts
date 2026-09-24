@@ -25,10 +25,6 @@ import {
 } from '../../utility'
 
 
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 loadEnvLocal(__dirname + '/../../../.env.local')
 
 
@@ -55,7 +51,7 @@ describe('WhoiEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[],"name":"whoi","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{"query":[{"active":true,"example":"apple.com","kind":"query","name":"domain","orig":"domain","reqd":false,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /v1/whois/lookup","json":"{\"operationId\":\"whoisLookup\",\"parameters\":[{\"description\":\"Domain name to look up. Defaults to apple.com when omitted for agent discovery.\",\"in\":\"query\",\"name\":\"domain\",\"schema\":{\"default\":\"apple.com\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"WHOIS data\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/v1/whois/lookup","segments":[{"lit":"v1"},{"lit":"whois"},{"lit":"lookup"}],"select":{"$action":"lookup","exist":["domain"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"whoi","name__orig":"whoi","Name":"Whoi","name_":"whoi","name-":"whoi","NAME":"WHOI","index$":5}, {"active":true,"entity":"whoi","key$":"BasicWhoiFlow","kind":"basic","name":"BasicWhoiFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"whoi_ref01","srcdatavar":"whoi_ref01_data","suffix":"_dt0"},"match":{},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-whoi_ref01"}}],"index$":0}]}, 'Whoi')
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"whoi","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /v1/whois/lookup","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"apple.com","k":"query","n":"domain","or":"domain","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/v1/whois/lookup","q":{"$action":"lookup","exist":["domain"]},"r":{},"s":[{"lit":"v1"},{"lit":"whois"},{"lit":"lookup"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"whoi","name__orig":"whoi","Name":"Whoi","name_":"whoi","name-":"whoi","NAME":"WHOI","index$":5}, {"active":true,"entity":"whoi","key$":"BasicWhoiFlow","kind":"basic","name":"BasicWhoiFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"whoi_ref01","srcdatavar":"whoi_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-whoi_ref01"}}],"index$":0}]}, 'Whoi', {"GET /v1/whois/lookup":{"protocol":"http","operationId":"whoisLookup","responses":{"200":{"description":"WHOIS data","content":{"application/json":{"schema":{"type":"object"}}}}},"parameters":[{"name":"domain","in":"query","schema":{"type":"string","default":"apple.com"},"description":"Domain name to look up. Defaults to apple.com when omitted for agent discovery.","index$":0}],"securitySource":"unspecified"}})
     }
     const client = setup.client
     const struct = setup.struct

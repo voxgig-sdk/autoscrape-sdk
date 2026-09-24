@@ -1,0 +1,95 @@
+# Entity: irs_990
+
+main: kit: entity: irs_990: {
+
+  alias: field: {}
+
+  name: "irs_990"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /v1/irs-990/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "ein"
+                or: "ein"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "fetch_detail"
+                or: "fetch_detail"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: 25
+                k: "query"
+                n: "max_result"
+                or: "max_result"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "state"
+                or: "state"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v1/irs-990/search"
+          q: {
+            "$action": "search"
+            exist: [
+              "ein"
+              "fetch_detail"
+              "max_result"
+              "query"
+              "state"
+            ]
+          }
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "irs-990"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}
